@@ -2,7 +2,7 @@
 <img src =""  width='900px' height='600px'>
 </p>
 <p align="center">
-<img src ="https://github.com/Hamaarour/Cub3D_1337/assets/pictures/Owners.png">
+<img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/Owners.png">
 </p>
 
 <p>This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use
