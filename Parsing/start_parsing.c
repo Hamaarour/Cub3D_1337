@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   start_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:51:52 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/27 17:09:41 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:08:57 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int start_parsing(t_cub3d *cub3d)
 	result = EXIT_SUCCESS;
 	cub3d->map_1d  = NULL;
 	cub3d->map_2d = NULL;
+	line = NULL;
 	while ((line = get_next_line(cub3d->fd)))
 	{
 		if (line[0] == '\n')

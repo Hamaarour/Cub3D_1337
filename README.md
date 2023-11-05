@@ -5,6 +5,9 @@
 <img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/Owners.png">
 </p>
 
+<p align="center">Welcome to cub3D, a graphic design project that serves as a playground to explore the practical applications of mathematics in the world of computer graphics.
+</p>
+
 <p>This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use
 of basic algorithms, information research etc.
 As a graphic design project, cub3D will enable you to improve your skills in these

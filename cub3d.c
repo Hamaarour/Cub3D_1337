@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/03 19:02:34 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/05 18:34:49 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int main(int ac, char *av[])
 
 			free_all(&mlx.cub3d);
 		}
-
 		close(mlx.cub3d.fd);
 		return (0);
 	}

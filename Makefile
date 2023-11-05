@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+         #
+#    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/04 16:27:42 by mel-kabb         ###   ########.fr        #
+#    Updated: 2023/11/05 18:19:56 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=Cub3D
+NAME=cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 FRAMWORK = -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -lm
 PATH = -I/usr/local/include
 
@@ -20,14 +20,14 @@ LIBFT_DIR = ./Library/Libft
 GNL_DIR = ./Library/Get_next_line
 
 
-SRC =	cub3d.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
+SRC =	cub3D.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
 		$(wildcard ./Parsing/directions/*.c) $(wildcard ./Parsing/direction/*.c) \
 		$(wildcard ./Parsing/floor_ceiling/*.c) $(wildcard ./Parsing/free/*.c) \
 		$(wildcard ./Parsing/init_struct/*.c) $(wildcard ./Parsing/map/*.c) \
 		$(wildcard ./RayCasting/line/*.c) $(wildcard ./RayCasting/hooks/*.c) $(wildcard ./RayCasting/utils/*.c) \
 		$(wildcard ./Raycasting/ray/*.c) $(wildcard ./mlx/*.c) $(wildcard ./RayCasting/3Dwalls/*.c) \
 
-     
+
 OBJ = $(SRC:.c=.o)
 
 
