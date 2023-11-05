@@ -6,13 +6,13 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/04 18:02:28 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/05 18:19:56 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 FRAMWORK = -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -lm
 PATH = -I/usr/local/include
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./Library/Libft
 GNL_DIR = ./Library/Get_next_line
 
 
-SRC =	cub3d.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
+SRC =	cub3D.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
 		$(wildcard ./Parsing/directions/*.c) $(wildcard ./Parsing/direction/*.c) \
 		$(wildcard ./Parsing/floor_ceiling/*.c) $(wildcard ./Parsing/free/*.c) \
 		$(wildcard ./Parsing/init_struct/*.c) $(wildcard ./Parsing/map/*.c) \

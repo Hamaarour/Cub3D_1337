@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 12:02:21 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/04 17:20:47 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:04:03 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@ int	cardinal_direction(char *line)
 		|| (line[0] == 'S' && line[1] == 'O')
 		|| (line[0] == 'E' && line[1] == 'A')
 		|| (line[0] == 'W' && line[1] == 'E'))
-		return (free(line), 1);
-	return (free(line), 0);
+	{
+		if (line != NULL)
+			free(line);
+		return (1);
+	}
+	if (line != NULL)
+		free(line);
+	return (0);
 }
 
 int	check_textures(t_cub3d *cub3d)

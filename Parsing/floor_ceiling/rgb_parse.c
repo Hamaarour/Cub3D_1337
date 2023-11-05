@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:07:18 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/04 17:56:37 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/05 18:30:57 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*cut_rgb(char *rgb)
 		tmp = ft_substr(rgb, 0 + 1, ft_strlen(rgb) - 0);
 	    return (tmp);
 	}
-
 	return (NULL);
 
 }
@@ -55,7 +54,8 @@ int	check_rang_rgb(t_cub3d *cub3d, int r, int g, int b, char type)
 {
 	if (r >= 0 && r <= 255 &&
 		g >= 0 && g <= 255 &&
-		b >= 0 && b <= 255 && type == 'F')
+		b >= 0 && b <= 255 &&
+		type == 'F')
 	{
 		cub3d->floor.r = r;
 		cub3d->floor.g = g;
@@ -63,8 +63,8 @@ int	check_rang_rgb(t_cub3d *cub3d, int r, int g, int b, char type)
 		return (0);
 	}
 	else if (r >= 0 && r <= 255 &&
-		g >= 0 && g <= 255 &&
-		b >= 0 && b <= 255 && type == 'C')
+		g >= 0 && g <= 255 && b >= 0 &&
+		b <= 255 && type == 'C')
 	{
 		cub3d->ceiling.r = r;
 		cub3d->ceiling.g = g;
@@ -79,16 +79,17 @@ int	parse_floor_color(t_cub3d *cub3d, char *line, char type)
 	char	*rgb;
 	char	**split;
 	char	*tmp;
+	char	*new_line;
 
 	split = NULL;
-	line = ft_strtrim(line, " ");
-	tmp = get_rgb(line);
+	new_line = ft_strtrim(line, " ");
+	tmp = get_rgb(new_line);
 	rgb = cut_rgb(tmp);
-	if (comma_check(line) != 0 || rgb == NULL)
+	if (comma_check(new_line) != 0 || rgb == NULL)
 	{
 		ft_putendl_fd("\033[0;31m Error Invalid floor color\033[0m", 2);
 		free_rgb(rgb, tmp);
-		return (free(line), EXIT_FAILURE);
+		return (free(new_line), EXIT_FAILURE);
 	}
 	split = ft_split(rgb, ',');
 	if (split == NULL || check_isdigit(split[0]) != 0 ||
@@ -97,16 +98,16 @@ int	parse_floor_color(t_cub3d *cub3d, char *line, char type)
 		ft_putendl_fd("\033[0;31m Error Invalid floor color\033[0m", 2);
 		free_array(split);
 		free_rgb(rgb, tmp);
-		return (free(line), EXIT_FAILURE);
+		return (free(new_line), EXIT_FAILURE);
 	}
 	if (check_rang_rgb(cub3d, ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), type) != 0)
 	{
 		ft_putendl_fd("\033[0;31m Error Invalid floor color\033[0m", 2);
 		free_array(split);
 		free_rgb(rgb, tmp);
-		return (free(line), EXIT_FAILURE);
+		return (free(new_line), EXIT_FAILURE);
 	}
 	free_array(split);
 	free_rgb(rgb, tmp);
-	return (free(line), EXIT_SUCCESS);
+	return (free(new_line), EXIT_SUCCESS);
 }
