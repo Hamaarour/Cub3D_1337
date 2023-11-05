@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/05 14:49:25 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/05 16:39:11 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void render3dwalls(t_mlx *mlx , int nb)
     raydistance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
     distancePjPlane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
     wallStripHeight = (TILE_SIZE / raydistance) * distancePjPlane;
-    
     wallTP = (MAP_H / 2) - (wallStripHeight / 2);
     if(wallTP < 0)
         wallTP = 0;
