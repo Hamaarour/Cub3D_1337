@@ -146,10 +146,14 @@ typedef struct s_mlx
 {
 	void *mlx_ptr;
 	void *mlx_win;
-	double h_x;
-	double h_y;
-	double v_x;
-	double v_y;
+	// double h_x;
+	// double h_y;
+	// double v_x;
+	double rayangle;
+	double ray_x;
+	double ray_y;
+	double arr_rays[NUM_RAYS];
+	double distance;
 	t_img_data imgs;
 	t_data data;
 	t_cub3d cub3d;
@@ -231,4 +235,7 @@ void ray(t_mlx *mlx, int color);
 void cast_ray(double ray_angle, t_mlx *mlx, int color);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // + line
+void render3dwalls(t_mlx *mlx , int nb);
+#endif
+
 #endif

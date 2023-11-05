@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/04 16:28:03 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/04 20:22:30 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,29 @@ void player_circle_render(t_mlx *mlx, t_player player)
 
 void render(t_mlx *mlx, t_cub3d cub3d)
 {
-	int i;
-	int j;
-
-	mlx->data.img = mlx_new_image(mlx->mlx_ptr,SCALE_FACTOR * (cub3d.map.x * TILE_SIZE), SCALE_FACTOR * (cub3d.map.y * TILE_SIZE));
+	// int i;
+	// int j;
+	(void) cub3d;
+	mlx->data.img = mlx_new_image(mlx->mlx_ptr,MAP_W, MAP_H);
 	mlx->data.addr = mlx_get_data_addr(mlx->data.img, &mlx->data.bits_per_pixel, &mlx->data.line_length, &mlx->data.endian);
 
-	i = 0;
-	while (i < cub3d.map.x)
-	{
-		j = 0;
-		while (j < cub3d.map.y)
-		{
-			if (cub3d.map_2d[j][i] == '1')
-				draw_square(mlx, SCALE_FACTOR * (i * TILE_SIZE), SCALE_FACTOR * ( j * TILE_SIZE), SCALE_FACTOR * TILE_SIZE, 0x000000);
-			else if (cub3d.map_2d[j][i] == '0' || is_player(cub3d.map_2d[j][i]))
-				draw_square(mlx, SCALE_FACTOR * (i * TILE_SIZE), SCALE_FACTOR * ( j * TILE_SIZE), SCALE_FACTOR * TILE_SIZE, 0xffffff);
-			j++;
-		}
-		i++;
-	}
-	player_circle_render(mlx, mlx->cub3d.player);
+	// i = 0;
+	// while (i < cub3d.map.x)
+	// {
+	// 	j = 0;
+	// 	while (j < cub3d.map.y)
+	// 	{
+	// 		if (cub3d.map_2d[j][i] == '1')
+	// 			draw_square(mlx, SCALE_FACTOR * (i * TILE_SIZE), SCALE_FACTOR * ( j * TILE_SIZE), SCALE_FACTOR * TILE_SIZE, 0x000000);
+	// 		else if (cub3d.map_2d[j][i] == '0' || is_player(cub3d.map_2d[j][i]))
+	// 			draw_square(mlx, SCALE_FACTOR * (i * TILE_SIZE), SCALE_FACTOR * ( j * TILE_SIZE), SCALE_FACTOR * TILE_SIZE, 0xffffff);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// player_circle_render(mlx, mlx->cub3d.player);
 	ray(mlx, 0x00ff00);
-	cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
+	// cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->data.img, 0, 0);
 	return;
 }
