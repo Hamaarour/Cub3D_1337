@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:48:06 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/27 15:02:39 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:50:58 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,25 @@ int	fill_textures(char **split, t_cub3d *cub3d)
 	return(free(tmp), EXIT_SUCCESS);
 }
 
+void	freeing_arr(char **array , char *line)
+{
+	if (line)
+		free(line);
+	if (!array)
+		return ;
+	int i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
-int    parse_direction(t_cub3d *cub3d, char *line)
+int	parse_direction(t_cub3d *cub3d, char *line)
 {
 	int		i;
 	char	**split;
-	(void)cub3d;
 
 	i = 0;
 	line = ft_strtrim(line, " ");
@@ -57,19 +70,13 @@ int    parse_direction(t_cub3d *cub3d, char *line)
 	if (i == 2)
 	{
 		if (fill_textures(split, cub3d) == EXIT_FAILURE)
-		{
-			free_array(split);
-			return (free(line), EXIT_FAILURE);
-		}
+			return (freeing_arr(split, line), EXIT_FAILURE);
 		else
-		{
-			free_array(split);
-			return (free(line), EXIT_SUCCESS);
-		}
+			return (freeing_arr(split, line), EXIT_SUCCESS);
 	}
 	else
 	{
-		free_array(split);
+		freeing_arr(split, line);
 		ft_putendl_fd("\033[0;31m Error Invalid line\033[0m", 2);
 		return (free(line), 1);
 	}
