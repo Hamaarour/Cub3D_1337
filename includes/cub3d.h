@@ -19,6 +19,10 @@
 #include "../Library/Libft/libft.h"
 #include "../Library/Get_next_line/get_next_line.h"
 
+//textures
+#define TEXTURE_WIDTH 64
+#define TEXTURE_HEIGHT 64
+
 #define TILE_SIZE 64
 #define MAP_NUM_ROWS 13
 #define MAP_NUM_COLS 20
@@ -101,14 +105,15 @@ typedef struct s_image
 	int		endian;
 	void	*ptr;
 	int		*data;
+	char 	*addr;
 }	t_image;
 
 typedef struct s_img_data
 {
-	t_image		g_north;
-	t_image		g_south;
-	t_image		g_east;
-	t_image		g_west;
+	t_image		img_north;
+	t_image		img_south;
+	t_image		img_east;
+	t_image		img_west;
 }	t_img_data;
 
 typedef struct s_cub3d
@@ -150,6 +155,8 @@ typedef struct s_mlx
 	double		rayangle;
 	double		ray_x;
 	double		ray_y;
+	double		tex_x;
+	double		tex_y;
 	double		arr_rays[NUM_RAYS];
 	double		distance;
 	t_img_data	imgs;
@@ -234,5 +241,6 @@ void	cast_ray(double ray_angle, t_mlx *mlx, int color);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // +line
 void	render3dwalls(t_mlx *mlx, int nb);
-
+void	textures_init(t_mlx *mlx);
+unsigned int	get_color(t_data *img, int x, int y);
 #endif

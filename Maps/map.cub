@@ -1,8 +1,8 @@
 
-NO ./pics/mandatory/def/colorstone.xpm
-SO ./pics/mandatory/def/eagle.xpm
-EA ./pics/mandatory/def/redbrick.xpm
-WE ./pics/mandatory/def/purplestone.xpm
+NO ./Textures/wood0.xpm
+SO ./Textures/wood1.xpm
+EA ./Textures/wood2.xpm
+WE ./Textures/wood3.xpm
 
 
 F 255,222,255
