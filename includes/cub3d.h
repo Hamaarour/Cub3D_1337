@@ -145,6 +145,8 @@ typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
+	int			isVertical;
+	int 		isHorizontal;
 	double		rayangle;
 	double		ray_x;
 	double		ray_y;

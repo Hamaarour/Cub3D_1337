@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/05 16:40:08 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:34:33 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void render(t_mlx *mlx, t_cub3d cub3d)
 	mlx->data.img = mlx_new_image(mlx->mlx_ptr,MAP_W, MAP_H);
 	mlx->data.addr = mlx_get_data_addr(mlx->data.img, &mlx->data.bits_per_pixel, &mlx->data.line_length, &mlx->data.endian);
 
+	ray(mlx, 0x00ff00);
+	cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
 	i = 0;
 	while (i < cub3d.map.x)
 	{
@@ -77,8 +79,6 @@ void render(t_mlx *mlx, t_cub3d cub3d)
 		i++;
 	}
 	player_circle_render(mlx, mlx->cub3d.player);
-	ray(mlx, 0x00ff00);
-	cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->data.img, 0, 0);
 	return;
 }

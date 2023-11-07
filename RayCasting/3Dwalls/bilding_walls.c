@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/05 16:39:11 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:07:32 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void render3dwalls(t_mlx *mlx , int nb)
     j = 0;
     while (j < wallTP)
     {
-        my_mlx_pixel_put(&mlx->data, nb, j, 0x00FF00);
+        my_mlx_pixel_put(&mlx->data, nb, j, 0xffffff);
         j++;
     }
     while (j < wallboP)
     {
-        my_mlx_pixel_put(&mlx->data, nb, j, 0xf000f0);
+        my_mlx_pixel_put(&mlx->data, nb, j, 0x108080);
         j++;
     }
     
     while (j < MAP_H)
     {
-        my_mlx_pixel_put(&mlx->data, nb, j, 0x00FFFF);
+        my_mlx_pixel_put(&mlx->data, nb, j, 0x808080);
         j++;
     }
 }

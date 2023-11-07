@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/05 16:59:54 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:48:02 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,6 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
 }
 
 
-// void cast_ray(double ray_angle, t_mlx *mlx, int color)
-// {
-// 	double player_x = mlx->cub3d.player.x;
-// 	double player_y = mlx->cub3d.player.y;
-// 	mlx->ray_x = player_x;
-// 	mlx->ray_y = player_y;
-// 	(void)color;
-
-// 	while (1)
-// 	{
-// 		mlx->ray_x += cos(ray_angle);
-// 		mlx->ray_y += sin(ray_angle);
-// 		if (check_wall(mlx, mlx->ray_x, mlx->ray_y))
-// 			break;
-// 		mlx->distance = cos(ray_angle) * (mlx->ray_x - player_x) + sin(ray_angle) * (mlx->ray_y - player_y);
-// 		// my_mlx_pixel_put(&mlx->data, SCALE_FACTOR * (double)mlx->ray_x, SCALE_FACTOR * (double)mlx->ray_y, color);
-// 	}
-// }
 
 // function to  calcul ray distance
 void ray(t_mlx *mlx, int color)
