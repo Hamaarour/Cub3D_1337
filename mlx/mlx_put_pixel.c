@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:34:00 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/07 21:56:07 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:20:21 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int	get_color(t_data *img, int x, int y)
+unsigned int	get_color(t_mlx *mlx, int x, int y)
 {
 	char			*dst;
 	unsigned int	color;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	dst = mlx->no_texture->addr + (y * mlx->no_texture->size_line + x * (mlx->no_texture->bits_per_pixel / 8));	
 	color = *(unsigned int *)dst;
 	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/07 20:18:07 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:07:45 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ int main(int ac, char *av[])
 			mlx.mlx_ptr = mlx_init();
 			mlx.mlx_win = mlx_new_window(mlx.mlx_ptr, MAP_W, MAP_H, "cub3d");
 			player_init(&mlx.cub3d);
+			textures_init(&mlx);
 			render(&mlx, mlx.cub3d);
-
 			mlx_hook(mlx.mlx_win, 2, 1L << 0, key_press, &mlx);
 			mlx_hook(mlx.mlx_win, 3, 1L << 1, key_release, &mlx);
 			mlx_hook(mlx.mlx_win, 17, 1L << 2, close_window, &mlx);
-			textures_init(&mlx);
 			mlx_loop_hook(mlx.mlx_ptr, game, &mlx);
 			mlx_loop(mlx.mlx_ptr);
 

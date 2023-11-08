@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/07 22:20:59 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/08 00:57:38 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,20 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
             break;
         }
     }
+    
 }
 
 // Define the constants for horizontal and vertical angles (adjust as needed)
 // Define the constants for horizontal and vertical angles (adjust as needed)
-#define HORIZONTAL_ANGLE_THRESHOLD (M_PI / 4.0)  // 45 degrees
-#define VERTICAL_ANGLE_THRESHOLD (M_PI - HORIZONTAL_ANGLE_THRESHOLD)
+// #define HORIZONTAL_ANGLE_THRESHOLD (M_PI / 4.0)  // 45 degrees
+// #define VERTICAL_ANGLE_THRESHOLD (M_PI - HORIZONTAL_ANGLE_THRESHOLD)
 
 void ray(t_mlx *mlx, int color)
 {
     double ray_angle;
     double ray_increment;
     int i;
-    (void)color;
+
     ray_angle = mlx->cub3d.player.rotation_angle - (FOV_ANGLE / 2);
     mlx->rayangle = ray_angle;
     ray_increment = FOV_ANGLE / MAP_W;
@@ -79,64 +80,26 @@ void ray(t_mlx *mlx, int color)
     while (i < MAP_W)
     {
         // Check if the current ray angle is horizontal or vertical
-        if (ray_angle <= HORIZONTAL_ANGLE_THRESHOLD || ray_angle >= (2 * M_PI - HORIZONTAL_ANGLE_THRESHOLD))
+        //if (ray_angle <= HORIZONTAL_ANGLE_THRESHOLD || ray_angle >= (2 * M_PI - HORIZONTAL_ANGLE_THRESHOLD))
+        cast_ray(ray_angle, mlx, color);
+        if(roundf(fmod(mlx->ray_y,64)) == 0)
         {
             mlx->isHorizontal = 1;
             mlx->isVertical = 0;  // Reset the vertical flag
         }
-        else if (ray_angle >= VERTICAL_ANGLE_THRESHOLD && ray_angle <= (M_PI + VERTICAL_ANGLE_THRESHOLD))
+
+        else if (roundf(fmod(mlx->ray_x,64)) == 0)
         {
             mlx->isVertical = 1;
             mlx->isHorizontal = 0;  // Reset the horizontal flag
         }
-        printf("mlx->isHorizontal = %d\n", mlx->isHorizontal);
-        printf("mlx->isVertical = %d\n", mlx->isVertical);
         // mlx->arr_rays[i] = ray_angle;
-        cast_ray(ray_angle, mlx, color);
         render3dwalls(mlx, i);
         ray_angle += ray_increment;
         i++;
     }
 }
-/*// Define the constants for horizontal and vertical angles (adjust as needed)
-#define HORIZONTAL_ANGLE_THRESHOLD 0.5 * M_PI
-#define VERTICAL_ANGLE_THRESHOLD 0.5 * M_PI
-
-void ray(t_mlx *mlx, int color)
-{
-	double	ray_angle;
-	double	ray_increment;
-	int		i;
-	(void)color;
-	ray_angle = mlx->cub3d.player.rotation_angle - (FOV_ANGLE / 2);
-	mlx->rayangle = ray_angle;
-	ray_increment = FOV_ANGLE / MAP_W;
-	i = 0;
-
-	// Initialize the flags to 0
-	mlx->isVertical = 0;
-	mlx->isHorizontal = 0;
-
-	while (i < MAP_W)
-	{
-		// Check if the current ray angle is horizontal or vertical
-		if (ray_angle <= HORIZONTAL_ANGLE_THRESHOLD || ray_angle >= (2 * M_PI - HORIZONTAL_ANGLE_THRESHOLD))
-		{
-			mlx->isHorizontal = 1;
-		}
-		else if (ray_angle >= VERTICAL_ANGLE_THRESHOLD && ray_angle <= (M_PI + VERTICAL_ANGLE_THRESHOLD))
-		{
-			mlx->isVertical = 1;
-		}
-
-		// mlx->arr_rays[i] = ray_angle;
-		cast_ray(ray_angle, mlx, color);
-		render3dwalls(mlx , i);
-		ray_angle += ray_increment;
-		i++;
-	}
-}
-*/
+// Define the constants for horizontal and vertical angles (adjust as needed)
 
 // function to  calcul ray distance
 // void ray(t_mlx *mlx, int color)

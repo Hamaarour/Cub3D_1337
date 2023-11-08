@@ -103,9 +103,9 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	void	*ptr;
 	int		*data;
 	char 	*addr;
+	void	*img;
 }	t_image;
 
 typedef struct s_img_data
@@ -159,6 +159,11 @@ typedef struct s_mlx
 	double		tex_y;
 	double		arr_rays[NUM_RAYS];
 	double		distance;
+	t_image		img;
+	t_image		*no_texture;
+	t_image		*so_texture;
+	t_image		*we_texture;
+	t_image		*ea_texture;
 	t_img_data	imgs;
 	t_data		data;
 	t_cub3d		cub3d;
@@ -242,5 +247,5 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // +line
 void	render3dwalls(t_mlx *mlx, int nb);
 void	textures_init(t_mlx *mlx);
-unsigned int	get_color(t_data *img, int x, int y);
+unsigned int	get_color(t_mlx *mlx, int x, int y);
 #endif
