@@ -247,5 +247,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // +line
 void	render3dwalls(t_mlx *mlx, int nb);
 void	textures_init(t_mlx *mlx);
-unsigned int	get_color(t_mlx *mlx, int x, int y);
+unsigned int	get_color(t_image *tex, int x, int y);
+void my_mlx_pixel_put2(t_image *textures, int x, int y, int color);
 #endif

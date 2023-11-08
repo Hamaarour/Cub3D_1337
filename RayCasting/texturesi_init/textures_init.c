@@ -8,7 +8,7 @@ int	check_texture(t_mlx *mlx, void *ptr)
 		free_all(&mlx->cub3d);
 		exit(EXIT_FAILURE);
 	}
-	exit(EXIT_SUCCESS);
+	return(EXIT_SUCCESS);
 }
 t_image	*new_texture(t_mlx *mlx, char *path)
 {

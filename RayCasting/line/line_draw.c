@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/08 00:57:38 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/08 18:11:10 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
 
             mlx->distance = distance;
 
-            // my_mlx_pixel_put(&mlx->data, SCALE_FACTOR * (double)mlx->ray_x, SCALE_FACTOR * (double)mlx->ray_y, color);
+            //my_mlx_pixel_put(&mlx->data, SCALE_FACTOR * (double)mlx->ray_x, SCALE_FACTOR * (double)mlx->ray_y, color);
 
             break;
         }
@@ -82,19 +82,19 @@ void ray(t_mlx *mlx, int color)
         // Check if the current ray angle is horizontal or vertical
         //if (ray_angle <= HORIZONTAL_ANGLE_THRESHOLD || ray_angle >= (2 * M_PI - HORIZONTAL_ANGLE_THRESHOLD))
         cast_ray(ray_angle, mlx, color);
-        if(roundf(fmod(mlx->ray_y,64)) == 0)
+        if(roundf(fmod(mlx->ray_x,64)) == 0)
         {
             mlx->isHorizontal = 1;
             mlx->isVertical = 0;  // Reset the vertical flag
         }
 
-        else if (roundf(fmod(mlx->ray_x,64)) == 0)
+        else if (roundf(fmod(mlx->ray_y,64)) == 0)
         {
             mlx->isVertical = 1;
             mlx->isHorizontal = 0;  // Reset the horizontal flag
         }
-        // mlx->arr_rays[i] = ray_angle;
         render3dwalls(mlx, i);
+        // mlx->arr_rays[i] = ray_angle;
         ray_angle += ray_increment;
         i++;
     }
