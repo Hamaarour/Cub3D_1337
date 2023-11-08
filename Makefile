@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+         #
+#    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/07 21:35:21 by mel-kabb         ###   ########.fr        #
+#    Updated: 2023/11/08 12:35:49 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = ./Library/Libft
 GNL_DIR = ./Library/Get_next_line
 
 
-SRC =	cub3D.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
+SRC =	cub3d.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
 		$(wildcard ./Parsing/directions/*.c) $(wildcard ./Parsing/direction/*.c) \
 		$(wildcard ./Parsing/floor_ceiling/*.c) $(wildcard ./Parsing/free/*.c) \
 		$(wildcard ./Parsing/init_struct/*.c) $(wildcard ./Parsing/map/*.c) \
