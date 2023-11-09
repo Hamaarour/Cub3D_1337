@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/08 18:13:24 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/09 03:40:41 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,23 @@ double get_x(t_mlx *mlx)
 
     if (mlx->isVertical == 1)
     {
-        x = fmod(mlx->ray_y, TILE_SIZE) * 64 / TILE_SIZE;
+        x = fmod(mlx->ray_y,64); // Calculate the relative Y-coordinate on the wall
+        if (x >= 63)
+        {
+            x = fmod(mlx->ray_x,63); // Calculate the relative X-coordinate on the wall
+        }
     }
     else
     {
-        x = fmod(mlx->ray_x, TILE_SIZE) * 64 / TILE_SIZE;
+        x = fmod(mlx->ray_x,64); // Calculate the relative Y-coordinate on the wall
+        if (x >= 62)
+        {
+            x = fmod(mlx->ray_y,63); // Calculate the relative X-coordinate on the wall
+        }
     }
+
+    // Normalize the x coordinate to the texture width (64)
+    // x = (x / TILE_SIZE) * 64;
 
     return x;
 }
@@ -59,6 +70,7 @@ void render3dwalls(t_mlx *mlx, int nb)
     mlx->tex_y = 0.0;
     mlx->tex_x = get_x(mlx);
     raydistance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
+
     distancePjPlane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
     wallStripHeight = (TILE_SIZE / raydistance) * distancePjPlane;
     wallTP = (MAP_H / 2) - (wallStripHeight / 2);
@@ -84,8 +96,30 @@ void render3dwalls(t_mlx *mlx, int nb)
     while (j < wallboP)
     {
         // Use the texture coordinate for this row
-        int texY = (int)textureCoord;
-        unsigned int color = get_color(mlx->no_texture, (int)mlx->tex_x, texY);
+        int distanceFromtop = j + (wallStripHeight / 2) - (MAP_H / 2);
+        int texY = distanceFromtop * (mlx->no_texture->height / wallStripHeight);
+        unsigned int color = 0;
+
+        if (mlx->x_offset == 0)
+        {
+            color = get_color(mlx->so_texture, (int)mlx->tex_x, texY);
+            //textureCoord += mlx->so_texture->height / wallStripHeight;
+        }
+        else if(mlx->x_offset == 1)
+        {
+            color = get_color(mlx->no_texture, (int)mlx->tex_x, texY);
+            //textureCoord += mlx->no_texture->height / wallStripHeight;
+        }
+        else if(mlx->x_offset == 2)
+        {
+            color = get_color(mlx->ea_texture, (int)mlx->tex_x, texY);
+            //textureCoord += mlx->ea_texture->height / wallStripHeight;
+        }
+        else if (mlx->x_offset == 3)    
+        {
+            color = get_color(mlx->we_texture, (int)mlx->tex_x, texY);
+            //textureCoord += mlx->we_texture->height / wallStripHeight;
+        }
         my_mlx_pixel_put(&mlx->data, nb, j, color);
         j++;
         // Adjust the texture coordinate for the next row
@@ -98,103 +132,5 @@ void render3dwalls(t_mlx *mlx, int nb)
     }
 }
 
-// void render3dwalls(t_mlx *mlx, int nb)
-// {
-//     double raydistance;
-//     double distancePjPlane;
-//     double wallStripHeight;
-//     double wallTP;
-//     double wallboP;
-//     double j;
 
-//     mlx->tex_y = 0.0;
-//     mlx->tex_x = get_x(mlx);
-//     raydistance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
-//     distancePjPlane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
-//     wallStripHeight = (TILE_SIZE / raydistance) * distancePjPlane;
-//     wallTP = (MAP_H / 2) - (wallStripHeight / 2);
-//     if (wallTP <= 0)
-//     {
-//         wallTP = 0;
-//     }
-//     wallboP = (MAP_H / 2) + (wallStripHeight / 2);
-//     if (wallboP > MAP_H)
-//     {
-//         wallboP = MAP_H;
-//     }
-//     j = 0;
-//     while (j < wallTP)
-//     {
-//         my_mlx_pixel_put(&mlx->data, nb, j, 0xffffff);
-//         j++;
-//     }
-//     while (j < wallboP)
-//     {
-//         unsigned int color = get_color(mlx->no_texture, mlx->tex_x, mlx->tex_y);
-//         my_mlx_pixel_put(&mlx->data, nb, j, color);
-//         j++;
-//         // Adjust the texture coordinates for the next row
-//         mlx->tex_y += mlx->no_texture->height / wallStripHeight;
-//     }
-//     while (j < MAP_H)
-//     {
-//         my_mlx_pixel_put(&mlx->data, nb, j, 0x808080);
-//         j++;
-//     }
-// }
-
-
-
-// void render3dwalls(t_mlx *mlx , int nb)
-// {
-//     //double ray[NUM_RAYS];
-//     double raydistance;
-//     double distancePjPlane;
-//     double wallStripHeight;
-//     double wallTP;
-//     double wallboP;
-//     double j;
-
-//     mlx->tex_y = 0.0;
-//     mlx->tex_x = get_x(mlx);
-//     raydistance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
-//     distancePjPlane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
-//     wallStripHeight = (TILE_SIZE / raydistance) * distancePjPlane;
-//     wallTP = (MAP_H / 2) - (wallStripHeight / 2);
-//     if(wallTP <= 0)
-//     {
-
-//         //mlx->tex_y = (((wallStripHeight / 2) - (MAP_H / 2)) / wallStripHeight) * 64;        
-//         wallTP = 0;
-//     }
-//     wallboP = (MAP_H / 2) + (wallStripHeight / 2);
-//     if(wallboP > MAP_H)
-//         wallboP = MAP_H;
-//     j = 0;
-//     while (j < wallTP)
-//     {
-//         my_mlx_pixel_put(&mlx->data, nb, j, 0xffffff);
-//         j++;
-//     }
-//     // while (j < wallboP)
-//     // {
-//     //     mlx->ray_y = fmod(j - (wallStripHeight / 2) * 64 / wallStripHeight, TILE_SIZE);
-//     //     my_mlx_pixel_put(&mlx->data, nb, j, get_color(mlx, mlx->tex_x, mlx->tex_y));
-//     //     //mlx->tex_y += (mlx->imgs.img_north.height / wallStripHeight);
-//     //     j++;
-//     // }
-//     while (j < wallboP)
-//     {
-//         // Calculate the texture y-coordinate based on the wall height
-//         mlx->tex_y = (mlx->imgs.img_north.height / wallStripHeight) * (j - wallTP);
-//         unsigned int color = get_color(mlx, mlx->tex_x, mlx->tex_y);
-//         my_mlx_pixel_put(&mlx->data, nb, j, color);
-//         j++;
-//     }
-//     while (j < MAP_H)
-//     {
-//         my_mlx_pixel_put(&mlx->data, nb, j, 0x808080);
-//         j++;
-//     }
-// }
 

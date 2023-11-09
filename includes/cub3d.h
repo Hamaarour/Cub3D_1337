@@ -148,6 +148,7 @@ typedef struct s_line
 
 typedef struct s_mlx
 {
+	int			x_offset;
 	void		*mlx_ptr;
 	void		*mlx_win;
 	int			isVertical;

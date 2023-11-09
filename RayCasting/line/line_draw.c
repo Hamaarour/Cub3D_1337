@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/08 18:11:10 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/09 03:15:55 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,32 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
     {
         mlx->ray_x += cos(ray_angle);
         mlx->ray_y += sin(ray_angle);
+
+        // Update mlx->tex_x and mlx->x_offset based on the ray angle
+        if (ray_angle >= 0 && ray_angle < M_PI) {
+            // Horizontal ray
+            mlx->x_offset = (cos(ray_angle) > 0) ? 0 : 1; // Adjust as needed
+            mlx->tex_x = fmod(mlx->ray_y, TILE_SIZE) * 64 / TILE_SIZE;
+        } else {
+            // Vertical ray
+            mlx->x_offset = (sin(ray_angle) > 0) ? 2 : 3; // Adjust as needed
+            mlx->tex_x = fmod(mlx->ray_x, TILE_SIZE) * 64 / TILE_SIZE;
+        }
+
         if (check_wall(mlx, mlx->ray_x, mlx->ray_y))
         {
             distance = sqrt((mlx->ray_x - player_x) * (mlx->ray_x - player_x) + (mlx->ray_y - player_y) * (mlx->ray_y - player_y));
-            
+
             // Apply fish-eye effect correction
             distance = distance * cos(angle_diff);
 
             mlx->distance = distance;
 
-            //my_mlx_pixel_put(&mlx->data, SCALE_FACTOR * (double)mlx->ray_x, SCALE_FACTOR * (double)mlx->ray_y, color);
-
             break;
         }
     }
-    
 }
+
 
 // Define the constants for horizontal and vertical angles (adjust as needed)
 // Define the constants for horizontal and vertical angles (adjust as needed)
@@ -84,12 +94,24 @@ void ray(t_mlx *mlx, int color)
         cast_ray(ray_angle, mlx, color);
         if(roundf(fmod(mlx->ray_x,64)) == 0)
         {
+            // if (sin(mlx->rayangle) > 0)
+            //     mlx->x_offset = 0; // lta7t
+            // else
+            //     mlx->x_offset = 1; // lfog
+            if (mlx->rayangle >= EA && mlx->rayangle < WE)
+                mlx->x_offset = 0; // lta7t
+            else
+                mlx->x_offset = 1; // lfog
             mlx->isHorizontal = 1;
             mlx->isVertical = 0;  // Reset the vertical flag
         }
 
         else if (roundf(fmod(mlx->ray_y,64)) == 0)
         {
+             if (mlx->rayangle >= SO && mlx->rayangle < NO)
+                mlx->x_offset = 2; // lta7t
+            else
+                mlx->x_offset = 3;// lisar
             mlx->isVertical = 1;
             mlx->isHorizontal = 0;  // Reset the horizontal flag
         }
