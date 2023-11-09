@@ -156,8 +156,8 @@ typedef struct s_mlx
 	double		rayangle;
 	double		ray_x;
 	double		ray_y;
-	double		tex_x;
-	double		tex_y;
+	int		tex_x;
+	int		tex_y;
 	double		arr_rays[NUM_RAYS];
 	double		distance;
 	t_image		img;
