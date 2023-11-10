@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:34:09 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/09 20:50:23 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:14:23 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_player(t_mlx *mlx)
 
 	x = 128;
 	y = x; //(8 * 17) - 8
-	draw_square(mlx, x, y, 16, 0xff0000);
+	draw_square(mlx, x, y, 16, 0x5a9475);
 }
 
 void	get_new_rect(t_mlx *mlx, int i, int j, char pos)
@@ -44,7 +44,7 @@ void	get_new_rect(t_mlx *mlx, int i, int j, char pos)
 	if(pos == '1')
 		draw_square(mlx, i, j, 16, 0);
 	else
-		draw_square(mlx, i, j, 16, 0x00ff00);
+		draw_square(mlx, i, j, 16, 0xbea289);
 }
 
 void	minimap_render(t_mlx *mlx)

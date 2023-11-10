@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/10 15:06:04 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:14:21 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
             break;
         }
     }
+
     if (ray_angle >= 0 && ray_angle < M_PI) {
         // Horizontal ray
         mlx->x_offset = (cos(ray_angle) > 0) ? 0 : 1; // Adjust as needed
@@ -102,6 +103,7 @@ void ray(t_mlx *mlx, int color)
                 mlx->x_offset = 0; // lta7t
             else
                 mlx->x_offset = 1; // lfog
+
             mlx->isHorizontal = 1;
             mlx->isVertical = 0;  // Reset the vertical flag
         }
@@ -112,6 +114,7 @@ void ray(t_mlx *mlx, int color)
                 mlx->x_offset = 2; // lta7t
             else
                 mlx->x_offset = 3;// lisar
+
             mlx->isVertical = 1;
             mlx->isHorizontal = 0;  // Reset the horizontal flag
         }
@@ -121,25 +124,3 @@ void ray(t_mlx *mlx, int color)
         i++;
     }
 }
-// Define the constants for horizontal and vertical angles (adjust as needed)
-
-// function to  calcul ray distance
-// void ray(t_mlx *mlx, int color)
-// {
-// 	double	ray_angle;
-// 	double	ray_increment;
-// 	int		i;
-// 	(void)color;
-// 	ray_angle = mlx->cub3d.player.rotation_angle - (FOV_ANGLE / 2);
-// 	mlx->rayangle = ray_angle;
-// 	ray_increment = FOV_ANGLE / MAP_W;
-// 	i = 0;
-// 	while (i < MAP_W)
-// 	{
-// 		//mlx->arr_rays[i] = ray_angle;
-// 		cast_ray(ray_angle, mlx, color);
-// 		render3dwalls(mlx , i);
-// 		ray_angle += ray_increment;
-// 		i++;
-// 	}
-// }

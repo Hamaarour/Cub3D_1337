@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <bkaztaou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 09:38:46 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/10/28 03:12:59 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:13:06 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void get_p_position(t_cub3d *cub3d)
 		px = 0;
 		while (cub3d->map_2d[py][px])
 		{
-			if (cub3d->map_2d[py][px] == 'S' || cub3d->map_2d[py][px] == 'N' || cub3d->map_2d[py][px] == 'E' || cub3d->map_2d[py][px] == 'W')
+			if (cub3d->map_2d[py][px] == 'S' || cub3d->map_2d[py][px] == 'N'
+				|| cub3d->map_2d[py][px] == 'E' || cub3d->map_2d[py][px] == 'W')
 			{
 				cub3d->player.rotation_angle = player_angel(cub3d->map_2d[py][px]);
 				cub3d->player.x = (float)(px * TILE_SIZE + 16);
