@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/10 17:48:38 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:50:16 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,16 @@ double get_x(t_mlx *mlx)
     return x;
 }
 
-int getdirection(t_mlx *mlx)
+void getdirection(t_mlx *mlx)
 {
-    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) + 1][(int)(mlx->ray_x / TILE_SIZE)])
-        return 1;
-    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) - 1][(int)(mlx->ray_x / TILE_SIZE)])
-        return 2;
-    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) ][(int)(mlx->ray_x / TILE_SIZE) + 1])
-       return 3;
-    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE)][(int)(mlx->ray_x / TILE_SIZE) - 1])
-        return 4;
-    return 0;
+    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) + 1][(int)(mlx->ray_x / TILE_SIZE)] == '1')
+        mlx->x_offset = 0;
+    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) - 1][(int)(mlx->ray_x / TILE_SIZE)] == '1')
+        mlx->x_offset = 1;
+    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) ][(int)(mlx->ray_x / TILE_SIZE) + 1]  == '1')
+       mlx->x_offset =2;
+    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE)][(int)(mlx->ray_x / TILE_SIZE) - 1] == '1')
+        mlx->x_offset = 3;
 }
 
 void render3dwalls(t_mlx *mlx, int nb)
@@ -97,8 +96,8 @@ void render3dwalls(t_mlx *mlx, int nb)
     j = 0;
 
     // Calculate the initial texture coordinate
-    float textureCoord = 0;
-    //k = getdirection(mlx);
+    // float textureCoord = 0;
+    // mlx->x_offset = getdirection(mlx);
     while (j < wallTP)
     {
         my_mlx_pixel_put(&mlx->data, nb, j, 0x6489ac);
@@ -111,32 +110,36 @@ void render3dwalls(t_mlx *mlx, int nb)
         mlx->tex_y = distanceFromtop * (mlx->no_texture->height / wallStripHeight);
        // mlx->tex_y = fmod(((j - (MAP_H - wallStripHeight)/2) * 64) / wallStripHeight,64);
         unsigned int color = 0;
-
+        getdirection(mlx);
         if (mlx->x_offset == 0)
         {
             color = get_color(mlx->so_texture, (int)mlx->tex_x, (int)mlx->tex_y);
+            my_mlx_pixel_put(&mlx->data, nb, j, color);
             //textureCoord += mlx->so_texture->height / wallStripHeight;
         }
         if(mlx->x_offset == 1)
         {
             color = get_color(mlx->no_texture, (int)mlx->tex_x, (int)mlx->tex_y);
+            my_mlx_pixel_put(&mlx->data, nb, j, color);
             //textureCoord += mlx->no_texture->height / wallStripHeight;
         }
         if(mlx->x_offset == 2)
         {
             color = get_color(mlx->ea_texture, (int)mlx->tex_x, (int)mlx->tex_y);
+            my_mlx_pixel_put(&mlx->data, nb, j, color);
             //textureCoord += mlx->ea_texture->height / wallStripHeight;
         }
         if (mlx->x_offset == 3)
         {
             color = get_color(mlx->we_texture, (int)mlx->tex_x, (int)mlx->tex_y);
+            my_mlx_pixel_put(&mlx->data, nb, j, color);
             //textureCoord += mlx->we_texture->height / wallStripHeight;
         }
         //color = get_color(mlx->we_texture, (int)mlx->tex_x, mlx->tex_y);
-        my_mlx_pixel_put(&mlx->data, nb, j, color);
+        //my_mlx_pixel_put(&mlx->data, nb, j, color);
         j++;
         // Adjust the texture coordinate for the next row
-        textureCoord += mlx->no_texture->height / wallStripHeight;
+        // textureCoord += (float)1 / wallStripHeight;
     }
     while (j < MAP_H)
     {

@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/10 18:14:21 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:44:12 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,17 @@ void cast_ray(double ray_angle, t_mlx *mlx, int color)
         }
     }
 
-    if (ray_angle >= 0 && ray_angle < M_PI) {
-        // Horizontal ray
-        mlx->x_offset = (cos(ray_angle) > 0) ? 0 : 1; // Adjust as needed
-        //mlx->tex_x = fmod(mlx->ray_y, TILE_SIZE) * 64 / TILE_SIZE;
-    } else {
-        // Vertical ray
-        mlx->x_offset = (sin(ray_angle) > 0) ? 2 : 3; // Adjust as needed
-        //mlx->tex_x = fmod(mlx->ray_x, TILE_SIZE) * 64 / TILE_SIZE;
-    }
+    // if (ray_angle >= 0 && ray_angle < M_PI) {
+    //     // Horizontal ray
+    //     mlx->x_offset = (cos(ray_angle) > 0) ? 0 : 1; // Adjust as needed
+    //     //mlx->tex_x = fmod(mlx->ray_y, TILE_SIZE) * 64 / TILE_SIZE;
+    // } else {
+    //     // Vertical ray
+    //     mlx->x_offset = (sin(ray_angle) > 0) ? 2 : 3; // Adjust as needed
+    //     //mlx->tex_x = fmod(mlx->ray_x, TILE_SIZE) * 64 / TILE_SIZE;
+    // }
 }
+
 
 
 // Define the constants for horizontal and vertical angles (adjust as needed)
@@ -99,10 +100,10 @@ void ray(t_mlx *mlx, int color)
             //     mlx->x_offset = 0; // lta7t
             // else
             //     mlx->x_offset = 1; // lfog
-            if (mlx->rayangle >= EA && mlx->rayangle < WE)
-                mlx->x_offset = 0; // lta7t
-            else
-                mlx->x_offset = 1; // lfog
+            // if (mlx->rayangle >= EA && mlx->rayangle < WE)
+            //     mlx->x_offset = 0; // lta7t
+            // else
+            //     mlx->x_offset = 1; // lfog
 
             mlx->isHorizontal = 1;
             mlx->isVertical = 0;  // Reset the vertical flag
@@ -110,10 +111,10 @@ void ray(t_mlx *mlx, int color)
 
         else if (roundf(fmod(mlx->ray_y,64)) == 0)
         {
-             if (mlx->rayangle >= SO && mlx->rayangle < NO)
-                mlx->x_offset = 2; // lta7t
-            else
-                mlx->x_offset = 3;// lisar
+            //  if (mlx->rayangle >= SO && mlx->rayangle < NO)
+            //     mlx->x_offset = 2; // lta7t
+            // else
+            //     mlx->x_offset = 3;// lisar
 
             mlx->isVertical = 1;
             mlx->isHorizontal = 0;  // Reset the horizontal flag
