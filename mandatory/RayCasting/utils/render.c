@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/09 20:52:07 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:04:32 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void render(t_mlx *mlx)
 	mlx->data.addr = mlx_get_data_addr(mlx->data.img, &mlx->data.bits_per_pixel, &mlx->data.line_length, &mlx->data.endian);
 	ray(mlx, 0x00ff00);
 	cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
-	//minimap_render(mlx);
+	minimap_render(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->data.img, 0, 0);
 	return ;
 }

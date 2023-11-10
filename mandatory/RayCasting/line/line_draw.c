@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/09 16:31:06 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:06:04 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void ray(t_mlx *mlx, int color)
         // Check if the current ray angle is horizontal or vertical
         //if (ray_angle <= HORIZONTAL_ANGLE_THRESHOLD || ray_angle >= (2 * M_PI - HORIZONTAL_ANGLE_THRESHOLD))
         cast_ray(ray_angle, mlx, color);
-        // if(roundf(fmod(mlx->ray_x,64)) == 0)
-        // {
+        if(roundf(fmod(mlx->ray_x,64)) == 0)
+        {
             // if (sin(mlx->rayangle) > 0)
             //     mlx->x_offset = 0; // lta7t
             // else
@@ -102,19 +102,19 @@ void ray(t_mlx *mlx, int color)
                 mlx->x_offset = 0; // lta7t
             else
                 mlx->x_offset = 1; // lfog
-        //     mlx->isHorizontal = 1;
-        //     mlx->isVertical = 0;  // Reset the vertical flag
-        // }
+            mlx->isHorizontal = 1;
+            mlx->isVertical = 0;  // Reset the vertical flag
+        }
 
-        // else if (roundf(fmod(mlx->ray_y,64)) == 0)
-        // {
+        else if (roundf(fmod(mlx->ray_y,64)) == 0)
+        {
              if (mlx->rayangle >= SO && mlx->rayangle < NO)
                 mlx->x_offset = 2; // lta7t
             else
                 mlx->x_offset = 3;// lisar
-        //     mlx->isVertical = 1;
-        //     mlx->isHorizontal = 0;  // Reset the horizontal flag
-        // }
+            mlx->isVertical = 1;
+            mlx->isHorizontal = 0;  // Reset the horizontal flag
+        }
         render3dwalls(mlx, i);
         // mlx->arr_rays[i] = ray_angle;
         ray_angle += ray_increment;

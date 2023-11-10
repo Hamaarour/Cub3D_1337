@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/09 18:12:30 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/10 15:06:55 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double get_x(t_mlx *mlx)
 {
     int x = 0;
 
-    if (mlx->x_offset == 1)
+    if (mlx->isVertical == 1)
     {
         x = fmod(mlx->ray_y,64); // Calculate the relative Y-coordinate on the wall
       // printf("x = %d\n", x);
@@ -88,7 +88,7 @@ void render3dwalls(t_mlx *mlx, int nb)
     float wallTP;
     float wallboP;
     int j;
-    int k;
+    //int k;
 
     mlx->tex_y = 0;
     mlx->tex_x = get_x(mlx);
@@ -110,7 +110,7 @@ void render3dwalls(t_mlx *mlx, int nb)
 
     // Calculate the initial texture coordinate
     float textureCoord = 0;
-    k = getdirection(mlx);
+    //k = getdirection(mlx);
     while (j < wallTP)
     {
         my_mlx_pixel_put(&mlx->data, nb, j, 0xffffff);
@@ -124,22 +124,22 @@ void render3dwalls(t_mlx *mlx, int nb)
        // mlx->tex_y = fmod(((j - (MAP_H - wallStripHeight)/2) * 64) / wallStripHeight,64);
         unsigned int color = 0;
 
-        if (k == 1)
+        if (mlx->x_offset == 1)
         {
             color = get_color(mlx->so_texture, (int)mlx->tex_x, (int)mlx->tex_y);
             //textureCoord += mlx->so_texture->height / wallStripHeight;
         }
-        if(k == 2)
+        if(mlx->x_offset == 2)
         {
             color = get_color(mlx->no_texture, (int)mlx->tex_x, (int)mlx->tex_y);
             //textureCoord += mlx->no_texture->height / wallStripHeight;
         }
-        if(k == 3)
+        if(mlx->x_offset == 3)
         {
             color = get_color(mlx->ea_texture, (int)mlx->tex_x, (int)mlx->tex_y);
             //textureCoord += mlx->ea_texture->height / wallStripHeight;
         }
-        if (k == 4)    
+        if (mlx->x_offset == 4)    
         {
             color = get_color(mlx->we_texture, (int)mlx->tex_x, (int)mlx->tex_y);
             //textureCoord += mlx->we_texture->height / wallStripHeight;
