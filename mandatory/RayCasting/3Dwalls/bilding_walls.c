@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/11 19:27:20 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/11 21:46:28 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ double get_x(t_mlx *mlx)
     }
     return x;
 }
+int check_wall_2(t_mlx *mlx, float x, float y)
+{
+	if (mlx->cub3d.map_2d[(int)(y / TILE_SIZE)][(int)(x / TILE_SIZE)] == '1')
+		return (0);
+	if (mlx->cub3d.map_2d[(int)((y - 2) / TILE_SIZE)][(int)(x / TILE_SIZE)] == '1')
+		return (1);
+	if (mlx->cub3d.map_2d[(int)((y + 2) / TILE_SIZE)][(int)(x / TILE_SIZE)] == '1')
+		return (0);
+	if (mlx->cub3d.map_2d[(int)(y / TILE_SIZE)][(int)((x - 2) / TILE_SIZE)] == '1')
+		return (1);
+	if (mlx->cub3d.map_2d[(int)(y / TILE_SIZE)][(int)((x + 2) / TILE_SIZE)] == '1')
+		return (1);
+	return (0);
+}
 
 void getdirection(t_mlx *mlx)
 {
@@ -57,27 +71,17 @@ void getdirection(t_mlx *mlx)
     rx = (int)(mlx->ray_x / TILE_SIZE);
     ry = (int)(mlx->ray_y / TILE_SIZE);
 
-
-    if (check_wall(mlx, mlx->ray_x - 2, mlx->ray_y))
-    {
+    if (check_wall_2(mlx, mlx->ray_x - 2, mlx->ray_y) == 0)
         mlx->x_offset = 0;
-    }
-    if (check_wall(mlx, mlx->ray_x, mlx->ray_y - 2))
-    {
-
+    if (check_wall_2(mlx, mlx->ray_x, mlx->ray_y - 2) == 1)
         mlx->x_offset = 1;
-    }
-    if (check_wall(mlx, mlx->ray_x, mlx->ray_y + 2))
-    {
-
+    if (check_wall_2(mlx, mlx->ray_x, mlx->ray_y + 2) == 0)
         mlx->x_offset = 2;
-    }
-
-    if (check_wall(mlx, mlx->ray_x - 2, mlx->ray_y))
-    {
-
+    if (check_wall_2(mlx, mlx->ray_x - 2, mlx->ray_y) == 1)
         mlx->x_offset = 3;
-    }
+    if (check_wall_2(mlx, mlx->ray_x - 1 , mlx->ray_y - 2) == 1)
+        mlx->x_offset = 0;
+
 }
 
 void render3dwalls(t_mlx *mlx, int nb)
