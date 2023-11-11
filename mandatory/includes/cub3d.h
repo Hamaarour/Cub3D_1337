@@ -164,7 +164,6 @@ typedef struct s_mlx
 	double		ray_y;
 	int			tex_x;
 	int			tex_y;
-	double		arr_rays[NUM_RAYS];
 	double		distance;
 	t_image		img;
 	t_image		*no_texture;
@@ -249,14 +248,15 @@ void	move_down_up(t_mlx *mlx);
 int		check_wall(t_mlx *mlx, float x, float y);
 int		is_player(char c);
 void	look_left_right(t_mlx *mlx);
-void	ray(t_mlx *mlx, int color);
-void	cast_ray(double ray_angle, t_mlx *mlx, int color);
+void	ray(t_mlx *mlx);
+void	cast_ray(double ray_angle, t_mlx *mlx);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // +line
-void	render3dwalls(t_mlx *mlx, int nb);
-void	textures_init(t_mlx *mlx);
+void			render3dwalls(t_mlx *mlx, int nb);
+void			textures_init(t_mlx *mlx);
 unsigned int	get_color(t_image *tex, int x, int y);
-void my_mlx_pixel_put2(t_image *textures, int x, int y, int color);
+void			my_mlx_pixel_put2(t_image *textures, int x, int y, int color);
 void			minimap_render(t_mlx *mlx);
+void getdirection(t_mlx *mlx);
 
 #endif

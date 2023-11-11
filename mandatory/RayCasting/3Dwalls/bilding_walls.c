@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/10 18:50:16 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:27:20 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,39 +36,48 @@ double get_x(t_mlx *mlx)
 
     if (mlx->isVertical == 1)
     {
-        x = fmod(mlx->ray_y,64); // Calculate the relative Y-coordinate on the wall
-      // printf("x = %d\n", x);
+        x = fmod(mlx->ray_y, 64); // Calculate the relative Y-coordinate on the wall
         if (x >= 62 || x <= 1)
-        {
-            x = fmod(mlx->ray_x,64); // Calculate the relative X-coordinate on the wall
-        }
+            x = fmod(mlx->ray_x, 64); // Calculate the relative X-coordinate on the wall
     }
     else
     {
-        x = fmod(mlx->ray_x,64);
-       // printf("x11 = %d\n", x);
+        x = fmod(mlx->ray_x, 64);
         if (x >= 62 || x <= 1)
-        {
-            x = fmod(mlx->ray_y,64); // Calculate the relative X-coordinate on the wall
-        }
+            x = fmod(mlx->ray_y, 64); // Calculate the relative X-coordinate on the wall
     }
-
-    // Normalize the x coordinate to the texture width (64)
-    // x = (x / TILE_SIZE) * 64;
-
     return x;
 }
 
 void getdirection(t_mlx *mlx)
 {
-    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) + 1][(int)(mlx->ray_x / TILE_SIZE)] == '1')
+    int rx;
+    int ry;
+
+    rx = (int)(mlx->ray_x / TILE_SIZE);
+    ry = (int)(mlx->ray_y / TILE_SIZE);
+
+
+    if (check_wall(mlx, mlx->ray_x - 2, mlx->ray_y))
+    {
         mlx->x_offset = 0;
-    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) - 1][(int)(mlx->ray_x / TILE_SIZE)] == '1')
+    }
+    if (check_wall(mlx, mlx->ray_x, mlx->ray_y - 2))
+    {
+
         mlx->x_offset = 1;
-    if(mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE) ][(int)(mlx->ray_x / TILE_SIZE) + 1]  == '1')
-       mlx->x_offset =2;
-    if (mlx->cub3d.map_2d[(int)(mlx->ray_y / TILE_SIZE)][(int)(mlx->ray_x / TILE_SIZE) - 1] == '1')
+    }
+    if (check_wall(mlx, mlx->ray_x, mlx->ray_y + 2))
+    {
+
+        mlx->x_offset = 2;
+    }
+
+    if (check_wall(mlx, mlx->ray_x - 2, mlx->ray_y))
+    {
+
         mlx->x_offset = 3;
+    }
 }
 
 void render3dwalls(t_mlx *mlx, int nb)
@@ -79,7 +88,6 @@ void render3dwalls(t_mlx *mlx, int nb)
     float wallTP;
     float wallboP;
     int j;
-    //int k;
 
     mlx->tex_y = 0;
     mlx->tex_x = get_x(mlx);
@@ -94,52 +102,28 @@ void render3dwalls(t_mlx *mlx, int nb)
     if (wallboP > MAP_H)
         wallboP = MAP_H;
     j = 0;
-
-    // Calculate the initial texture coordinate
-    // float textureCoord = 0;
-    // mlx->x_offset = getdirection(mlx);
     while (j < wallTP)
     {
         my_mlx_pixel_put(&mlx->data, nb, j, 0x6489ac);
         j++;
     }
+
     while (j < wallboP)
     {
-        // Use the texture coordinate for this row
-         int distanceFromtop = j + (wallStripHeight / 2) - (MAP_H / 2);
+        int distanceFromtop = j + (wallStripHeight / 2) - (MAP_H / 2);
         mlx->tex_y = distanceFromtop * (mlx->no_texture->height / wallStripHeight);
-       // mlx->tex_y = fmod(((j - (MAP_H - wallStripHeight)/2) * 64) / wallStripHeight,64);
         unsigned int color = 0;
-        getdirection(mlx);
+    getdirection(mlx);
         if (mlx->x_offset == 0)
-        {
             color = get_color(mlx->so_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-            my_mlx_pixel_put(&mlx->data, nb, j, color);
-            //textureCoord += mlx->so_texture->height / wallStripHeight;
-        }
         if(mlx->x_offset == 1)
-        {
             color = get_color(mlx->no_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-            my_mlx_pixel_put(&mlx->data, nb, j, color);
-            //textureCoord += mlx->no_texture->height / wallStripHeight;
-        }
         if(mlx->x_offset == 2)
-        {
             color = get_color(mlx->ea_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-            my_mlx_pixel_put(&mlx->data, nb, j, color);
-            //textureCoord += mlx->ea_texture->height / wallStripHeight;
-        }
         if (mlx->x_offset == 3)
-        {
             color = get_color(mlx->we_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-            my_mlx_pixel_put(&mlx->data, nb, j, color);
-            //textureCoord += mlx->we_texture->height / wallStripHeight;
-        }
-        //color = get_color(mlx->we_texture, (int)mlx->tex_x, mlx->tex_y);
-        //my_mlx_pixel_put(&mlx->data, nb, j, color);
+        my_mlx_pixel_put(&mlx->data, nb, j, color);
         j++;
-        // Adjust the texture coordinate for the next row
-        // textureCoord += (float)1 / wallStripHeight;
     }
     while (j < MAP_H)
     {

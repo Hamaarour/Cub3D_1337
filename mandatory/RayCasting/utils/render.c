@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/10 18:39:44 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:17:29 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void render(t_mlx *mlx)
 {
 	mlx->data.img = mlx_new_image(mlx->mlx_ptr,MAP_W, MAP_H);
 	mlx->data.addr = mlx_get_data_addr(mlx->data.img, &mlx->data.bits_per_pixel, &mlx->data.line_length, &mlx->data.endian);
-	ray(mlx, 0x00ff00);
-	// cast_ray(mlx->cub3d.player.rotation_angle, mlx, 0xff0000);
+	ray(mlx);
 	minimap_render(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->data.img, 0, 0);
 	return ;
