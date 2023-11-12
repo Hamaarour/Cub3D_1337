@@ -6,27 +6,34 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/09 20:39:08 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/12 22:09:23 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 FRAMWORK = -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit -lm
 PATH = -I/usr/local/include
 
 LIBFT_DIR = ./Library/Libft
 GNL_DIR = ./Library/Get_next_line
 
+SRC = cub3d.c $(wildcard ./src/mlx/*.c) \
+		$(wildcard ./src/parsing/*.c) $(wildcard ./src/parsing/directions/*.c) \
+		$(wildcard ./src/parsing/map/*.c) $(wildcard ./src/parsing/player/*.c) \
+		$(wildcard ./src/parsing/floor_ceiling/*.c) \
+		$(wildcard ./src/raycasting/events/*.c) $(wildcard ./src/raycasting/utils/*.c) \
+		$(wildcard ./src/raycasting/line/*.c) $(wildcard ./src/raycasting/walls/*.c) \
+		$(wildcard ./src/raycasting/textures_init/*.c) $(wildcard ./src/raycasting/minimap/*.c)
 
-SRC =	cub3d.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
-		$(wildcard ./Parsing/directions/*.c) $(wildcard ./Parsing/direction/*.c) \
-		$(wildcard ./Parsing/floor_ceiling/*.c) $(wildcard ./Parsing/free/*.c) \
-		$(wildcard ./Parsing/init_struct/*.c) $(wildcard ./Parsing/map/*.c) \
-		$(wildcard ./RayCasting/line/*.c) $(wildcard ./RayCasting/hooks/*.c) $(wildcard ./RayCasting/utils/*.c) \
-		$(wildcard ./Raycasting/ray/*.c) $(wildcard ./mlx/*.c) $(wildcard ./RayCasting/3Dwalls/*.c) $(wildcard ./RayCasting/texturesi_init/*.c)\
-		$(wildcard ./RayCasting/minimap/*.c)
+# SRC =	cub3d.c $(wildcard ./Parsing/*.c) $(wildcard ./Parsing/config/*.c) $(wildcard ./Parsing/player/*.c) \
+# 		$(wildcard ./Parsing/directions/*.c) $(wildcard ./Parsing/direction/*.c) \
+# 		$(wildcard ./Parsing/floor_ceiling/*.c) $(wildcard ./Parsing/free/*.c) \
+# 		$(wildcard ./Parsing/init_struct/*.c) $(wildcard ./Parsing/map/*.c) \
+# 		$(wildcard ./RayCasting/line/*.c) $(wildcard ./RayCasting/hooks/*.c) $(wildcard ./RayCasting/utils/*.c) \
+# 		$(wildcard ./Raycasting/ray/*.c) $(wildcard ./mlx/*.c) $(wildcard ./RayCasting/3Dwalls/*.c) $(wildcard ./RayCasting/texturesi_init/*.c)\
+# 		$(wildcard ./RayCasting/minimap/*.c)
 
 OBJ = $(SRC:.c=.o)
 
