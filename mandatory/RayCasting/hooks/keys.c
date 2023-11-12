@@ -20,7 +20,6 @@ int mouse(int key, int x, int y, t_mlx *mlx)
 {
 	(void)x;
 	(void)y;
-	printf("mouse key : %d\n", key);
 	if (key == VIEW_RIGHT_MOUSE)
 		mlx->cub3d.player.look = 1;
 	if (key == VIEW_LEFT_MOUSE)
@@ -76,9 +75,10 @@ void move_down_up(t_mlx *mlx)
 }
 void move_left_right(t_mlx *mlx)
 {
-	float moveStep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
+	float moveStep = mlx->cub3d.player.walk_speed * mlx->cub3d.player.turn_direction;
 	float newPlayerX = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
 	float newPlayerY = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
+
 	if (check_wall(mlx, newPlayerX, newPlayerY) == 0)
 	{
 		mlx->cub3d.player.x = newPlayerX;

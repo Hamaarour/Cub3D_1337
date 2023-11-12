@@ -6,28 +6,12 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/12 18:19:06 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:32:23 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "./includes/cub3d.h"
-
-void printf_test(t_cub3d cub3d)
-{
-	printf("NORTH : '%s'\n", cub3d.parse_direct.north_texture);
-	printf("SOUTH : '%s'\n", cub3d.parse_direct.south_texture);
-	printf("EAST : '%s'\n", cub3d.parse_direct.east_texture);
-	printf("WEST : '%s'\n", cub3d.parse_direct.west_texture);
-	printf("FLOOR : '%d,%d,%d'\n", cub3d.floor.r, cub3d.floor.g, cub3d.floor.b);
-	printf("CEILING : '%d,%d,%d'\n", cub3d.ceiling.r, cub3d.ceiling.g, cub3d.ceiling.b);
-	int i = 0;
-	while (cub3d.map_2d[i])
-	{
-		printf("MAP : {%s}\n", cub3d.map_2d[i]);
-		i++;
-	}
-}
 
 int main(int ac, char *av[])
 {
