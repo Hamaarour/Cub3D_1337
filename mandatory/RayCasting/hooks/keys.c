@@ -11,8 +11,20 @@ int key_release(int key, t_mlx *mlx)
 		mlx->cub3d.player.turn_direction = 0;
 	if (key == KEY_LEFT)
 		mlx->cub3d.player.turn_direction = 0;
-	if (key == VIEW_RIGHT || key == VIEW_LEFT)
+	if (key == VIEW_RIGHT || key == VIEW_LEFT
+		|| key == VIEW_RIGHT_MOUSE || key == VIEW_LEFT_MOUSE)
 		mlx->cub3d.player.look = 0;
+	return (0);
+}
+int mouse(int key, int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	printf("mouse key : %d\n", key);
+	if (key == VIEW_RIGHT_MOUSE)
+		mlx->cub3d.player.look = 1;
+	if (key == VIEW_LEFT_MOUSE)
+		mlx->cub3d.player.look = -1;
 	return (0);
 }
 
@@ -26,9 +38,9 @@ int key_press(int key, t_mlx *mlx)
 		mlx->cub3d.player.turn_direction = 1;
 	if (key == KEY_LEFT)
 		mlx->cub3d.player.turn_direction = -1;
-	if (key == VIEW_RIGHT)
+	if (key == VIEW_RIGHT ||  key == VIEW_RIGHT_MOUSE)
 		mlx->cub3d.player.look = 1;
-	if (key == VIEW_LEFT)
+	if (key == VIEW_LEFT || key == VIEW_LEFT_MOUSE)
 		mlx->cub3d.player.look = -1;
 	if (key == KEY_ESC)
 	{
@@ -53,8 +65,6 @@ void look_left_right(t_mlx *mlx)
 
 void move_down_up(t_mlx *mlx)
 {
-	// Move according to the direction of the player
-	// (player.rotation_angle is the direction of the player)
 	float moveStep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
 	float newPlayerX = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle) * moveStep;
 	float newPlayerY = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle) * moveStep;
@@ -64,3 +74,15 @@ void move_down_up(t_mlx *mlx)
 		mlx->cub3d.player.y = newPlayerY;
 	}
 }
+void move_left_right(t_mlx *mlx)
+{
+	float moveStep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
+	float newPlayerX = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
+	float newPlayerY = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
+	if (check_wall(mlx, newPlayerX, newPlayerY) == 0)
+	{
+		mlx->cub3d.player.x = newPlayerX;
+		mlx->cub3d.player.y = newPlayerY;
+	}
+}
+

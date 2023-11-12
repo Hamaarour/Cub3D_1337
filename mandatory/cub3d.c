@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/09 20:35:22 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:19:06 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int main(int ac, char *av[])
 			render(&mlx);
 			mlx_hook(mlx.mlx_win, 2, 1L << 0, key_press, &mlx);
 			mlx_hook(mlx.mlx_win, 3, 1L << 1, key_release, &mlx);
+			mlx_hook(mlx.mlx_win, 6, 1L << 6, mouse, &mlx);
 			mlx_hook(mlx.mlx_win, 17, 1L << 2, close_window, &mlx);
 			mlx_loop_hook(mlx.mlx_ptr, game, &mlx);
 			mlx_loop(mlx.mlx_ptr);
-
 			free_all(&mlx.cub3d);
 		}
 		close(mlx.cub3d.fd);

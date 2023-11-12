@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/11 21:46:28 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/12 17:20:12 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ int check_wall_2(t_mlx *mlx, float x, float y)
 
 void getdirection(t_mlx *mlx)
 {
-    int rx;
-    int ry;
-
-    rx = (int)(mlx->ray_x / TILE_SIZE);
-    ry = (int)(mlx->ray_y / TILE_SIZE);
-
     if (check_wall_2(mlx, mlx->ray_x - 2, mlx->ray_y) == 0)
         mlx->x_offset = 0;
     if (check_wall_2(mlx, mlx->ray_x, mlx->ray_y - 2) == 1)
@@ -79,30 +73,31 @@ void getdirection(t_mlx *mlx)
         mlx->x_offset = 2;
     if (check_wall_2(mlx, mlx->ray_x - 2, mlx->ray_y) == 1)
         mlx->x_offset = 3;
-    if (check_wall_2(mlx, mlx->ray_x - 1 , mlx->ray_y - 2) == 1)
+    if (check_wall_2(mlx, mlx->ray_x - 1, mlx->ray_y - 2) == 1)
         mlx->x_offset = 0;
 
 }
 
 void render3dwalls(t_mlx *mlx, int nb)
 {
-    float raydistance;
-    float distancePjPlane;
-    float wallStripHeight;
-    float wallTP;
-    float wallboP;
-    int j;
+	float				ray_distance;
+	float               distance_pjplane;
+	float               wall_strip_height;
+	float               wallTP;
+	float               wallboP;
+	int					distance_fromtop;
+	unsigned int      color;
+	int             j;
 
     mlx->tex_y = 0;
     mlx->tex_x = get_x(mlx);
-    raydistance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
-
-    distancePjPlane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
-    wallStripHeight = (TILE_SIZE / raydistance) * distancePjPlane;
-    wallTP = (MAP_H / 2) - (wallStripHeight / 2);
+    ray_distance = mlx->distance * cos(mlx->rayangle - mlx->cub3d.player.rotation_angle);
+    distance_pjplane = (MAP_W / 2) / tan(FOV_ANGLE / 2); // distance between player and projection plane
+    wall_strip_height = (TILE_SIZE / ray_distance) * distance_pjplane;
+    wallTP = (MAP_H / 2) - (wall_strip_height / 2);
     if (wallTP <= 0)
         wallTP = 0;
-    wallboP = (MAP_H / 2) + (wallStripHeight / 2);
+    wallboP = (MAP_H / 2) + (wall_strip_height / 2);
     if (wallboP > MAP_H)
         wallboP = MAP_H;
     j = 0;
@@ -111,13 +106,12 @@ void render3dwalls(t_mlx *mlx, int nb)
         my_mlx_pixel_put(&mlx->data, nb, j, 0x6489ac);
         j++;
     }
-
     while (j < wallboP)
     {
-        int distanceFromtop = j + (wallStripHeight / 2) - (MAP_H / 2);
-        mlx->tex_y = distanceFromtop * (mlx->no_texture->height / wallStripHeight);
-        unsigned int color = 0;
-    getdirection(mlx);
+        distance_fromtop = j + (wall_strip_height / 2) - (MAP_H / 2);
+        mlx->tex_y = distance_fromtop * (mlx->no_texture->height / wall_strip_height);
+        color = 0;
+        getdirection(mlx);
         if (mlx->x_offset == 0)
             color = get_color(mlx->so_texture, (int)mlx->tex_x, (int)mlx->tex_y);
         if(mlx->x_offset == 1)

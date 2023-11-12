@@ -19,10 +19,6 @@
 #include "../Library/Libft/libft.h"
 #include "../Library/Get_next_line/get_next_line.h"
 
-//textures
-#define TEXTURE_WIDTH 64
-#define TEXTURE_HEIGHT 64
-
 #define TILE_SIZE 64
 #define MAP_NUM_ROWS 13
 #define MAP_NUM_COLS 20
@@ -33,24 +29,26 @@
 #define SCALE_FACTOR 0.4
 
 // Keys
-#define KEY_UP 13	  // 13 //119
-#define KEY_DOWN 1    // 1 //115
-#define KEY_RIGHT 2 // 2 //100
-#define KEY_LEFT 0	  // 0 //97
-#define KEY_ESC 53 // 53 //65307
+#define KEY_UP 13
+#define KEY_DOWN 1
+#define KEY_RIGHT 2
+#define KEY_LEFT 0
+#define KEY_ESC 53
 
 // view
-#define VIEW_RIGHT 124 // 124 //65363
-#define VIEW_LEFT 123	 // 123 //65361
+#define VIEW_RIGHT 124
+#define VIEW_LEFT 123
+#define VIEW_RIGHT_MOUSE 264
+#define VIEW_LEFT_MOUSE 269
 
 #define FOV_ANGLE 60 * (M_PI / 180)
 #define WALL_STRIP_WIDTH 1
 #define NUM_RAYS (MAP_H / WALL_STRIP_WIDTH)
 
-#define NO 4.72 // N
-#define SO 1.57 // S
-#define WE 3.14 // W
-#define EA 0 // E
+#define NO 4.72
+#define SO 1.57
+#define WE 3.14
+#define EA 0
 
 typedef struct s_parse_direction
 {
@@ -205,58 +203,60 @@ int		rgb(t_cub3d cub3d);
 int		rgb_is_set(t_cub3d *cub3d);
 
 //+ Parsing Map Functions +//
-int		textures_is_fill(t_cub3d *cub3d);
-int		floor_ceiling_is_color(t_cub3d *cub3d);
-int		is_map_last(t_cub3d *cub3d);
-void	map_height(t_cub3d *cub3d);
-void	map_width(t_cub3d *cub3d);
-int		first_last_lines(char *line);
-int		first_last_column(char *line);
-int		is_surrounded(t_cub3d *cub3d);
-int		map_check(t_cub3d *cub3d);
-int		is_map(char *line);
-char	**to_rectangle(char **map, size_t line_length);
-size_t	tall_line(char **map);
-char	*get_line(char *line, size_t max);
-int		check_newline(char *map_1d);
-void	map_dimension(t_cub3d *cub3d);
+int				textures_is_fill(t_cub3d *cub3d);
+int				floor_ceiling_is_color(t_cub3d *cub3d);
+int				is_map_last(t_cub3d *cub3d);
+void			map_height(t_cub3d *cub3d);
+void			map_width(t_cub3d *cub3d);
+int				first_last_lines(char *line);
+int				first_last_column(char *line);
+int				is_surrounded(t_cub3d *cub3d);
+int				map_check(t_cub3d *cub3d);
+int				is_map(char *line);
+char			**to_rectangle(char **map, size_t line_length);
+size_t			tall_line(char **map);
+char			*get_line(char *line, size_t max);
+int				check_newline(char *map_1d);
+void			map_dimension(t_cub3d *cub3d);
 
 //*player*//
-int		num_of_player(t_cub3d *cub3d);
-void	get_p_position(t_cub3d *cub3d);
+int				num_of_player(t_cub3d *cub3d);
+void			get_p_position(t_cub3d *cub3d);
 
 //+config file
-int		config_file_is_set(t_cub3d cub3d);
+int				config_file_is_set(t_cub3d cub3d);
 
 //+Free Functions +//
-void	free_array(char **array);
-void	free_textures(t_cub3d *cub3d);
-void	free_rgb(char *rgb, char *tmp);
-void	free_all(t_cub3d *cub3d);
+void			free_array(char **array);
+void			free_textures(t_cub3d *cub3d);
+void			free_rgb(char *rgb, char *tmp);
+void			free_all(t_cub3d *cub3d);
 
 //+Ray Casting Functions +//
 
-void	player_init(t_cub3d *cub3d);
-int		key_press(int key, t_mlx *mlx);
-int		key_release(int key, t_mlx *mlx);
+void			player_init(t_cub3d *cub3d);
+int				key_press(int key, t_mlx *mlx);
+int				key_release(int key, t_mlx *mlx);
+int				mouse(int key, int x, int y, t_mlx *ml);
 
-void	render(t_mlx *mlx);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		game(t_mlx *mlx);
-int		close_window(t_mlx *mlx);
-void	move_down_up(t_mlx *mlx);
-int		check_wall(t_mlx *mlx, float x, float y);
-int		is_player(char c);
-void	look_left_right(t_mlx *mlx);
-void	ray(t_mlx *mlx);
-void	cast_ray(double ray_angle, t_mlx *mlx);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			render(t_mlx *mlx);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int				game(t_mlx *mlx);
+int				close_window(t_mlx *mlx);
+void			move_down_up(t_mlx *mlx);
+void			move_left_right(t_mlx *mlx);
+int				check_wall(t_mlx *mlx, float x, float y);
+int				is_player(char c);
+void			look_left_right(t_mlx *mlx);
+void			ray(t_mlx *mlx);
+void			cast_ray(double ray_angle, t_mlx *mlx);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // +line
 void			render3dwalls(t_mlx *mlx, int nb);
 void			textures_init(t_mlx *mlx);
 unsigned int	get_color(t_image *tex, int x, int y);
 void			my_mlx_pixel_put2(t_image *textures, int x, int y, int color);
 void			minimap_render(t_mlx *mlx);
-void getdirection(t_mlx *mlx);
+void			getdirection(t_mlx *mlx);
 
 #endif

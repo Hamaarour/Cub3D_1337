@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/11 19:17:29 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/12 18:14:35 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int game(t_mlx *mlx)
 	if (mlx->cub3d.player.walk_direction)
 		move_down_up(mlx);
 	if (mlx->cub3d.player.turn_direction)
-		look_left_right(mlx);
+		move_left_right(mlx);
 	if (mlx->cub3d.player.look)
 		look_left_right(mlx);
 	render(mlx);
