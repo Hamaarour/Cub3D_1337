@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/12 22:55:13 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:51:53 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void cast_ray(double ray_angle, t_mlx *mlx)
         if (check_wall(mlx, mlx->ray_x, mlx->ray_y))
         {
             distance = sqrt((mlx->ray_x - player_x) * (mlx->ray_x - player_x) + (mlx->ray_y - player_y) * (mlx->ray_y - player_y));
-            // Apply fish-eye effect correction
             distance = distance * cos(angle_diff);
             mlx->distance = distance;
             break;
