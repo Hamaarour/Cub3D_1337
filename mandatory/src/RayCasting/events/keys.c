@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:50:03 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/13 14:51:02 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/13 15:28:31 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,18 @@ int key_release(int key, t_mlx *mlx)
 		mlx->cub3d.player.turn_direction = 0;
 	if (key == KEY_LEFT)
 		mlx->cub3d.player.turn_direction = 0;
-	if (key == VIEW_RIGHT || key == VIEW_LEFT
-		|| key == VIEW_RIGHT_MOUSE || key == VIEW_LEFT_MOUSE)
+	if (key == VIEW_RIGHT || key == VIEW_LEFT)
 		mlx->cub3d.player.look = 0;
 	return (0);
 }
-int mouse(int key, int x, int y, t_mlx *mlx)
+int mouse(int x, int y, t_mlx *mlx)
 {
-	(void)x;
 	(void)y;
-	if (key == VIEW_RIGHT_MOUSE)
-		mlx->cub3d.player.look = 1;
-	if (key == VIEW_LEFT_MOUSE)
+	mlx->cub3d.player.look = 0;
+	if (x < MAP_W / 3)
 		mlx->cub3d.player.look = -1;
+	else if (x > MAP_W - (MAP_W / 3))
+		mlx->cub3d.player.look = 1;
 	return (0);
 }
 
@@ -49,9 +48,9 @@ int key_press(int key, t_mlx *mlx)
 		mlx->cub3d.player.turn_direction = 1;
 	if (key == KEY_LEFT)
 		mlx->cub3d.player.turn_direction = -1;
-	if (key == VIEW_RIGHT ||  key == VIEW_RIGHT_MOUSE)
+	if (key == VIEW_RIGHT)
 		mlx->cub3d.player.look = 1;
-	if (key == VIEW_LEFT || key == VIEW_LEFT_MOUSE)
+	if (key == VIEW_LEFT)
 		mlx->cub3d.player.look = -1;
 	if (key == KEY_ESC)
 	{

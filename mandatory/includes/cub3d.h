@@ -230,7 +230,7 @@ void			cleanup(t_cub3d *cub3d);
 void			player_init(t_cub3d *cub3d);
 int				key_press(int key, t_mlx *mlx);
 int				key_release(int key, t_mlx *mlx);
-int				mouse(int key, int x, int y, t_mlx *ml);
+int				mouse(int x, int y, t_mlx *ml);
 
 void			render(t_mlx *mlx);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
