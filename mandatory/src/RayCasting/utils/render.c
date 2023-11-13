@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/12 21:21:54 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/13 00:56:24 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int game(t_mlx *mlx)
 		move_left_right(mlx);
 	if (mlx->cub3d.player.look)
 		look_left_right(mlx);
+	// if(mlx->cub3d.player.look)
+	// 	look_left_right(mlx);
 	render(mlx);
 	return (0);
 }

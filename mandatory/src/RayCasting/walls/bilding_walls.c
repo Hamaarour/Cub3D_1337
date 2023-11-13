@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bilding_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/12 22:55:01 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/12 23:19:38 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,27 @@ void render3dwalls(t_mlx *mlx, int nb)
         color = 0;
         getdirection(mlx);
         if (mlx->x_offset == 0)
-            color = get_color(mlx->so_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-        if(mlx->x_offset == 1)
-            color = get_color(mlx->no_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-        if(mlx->x_offset == 2)
-            color = get_color(mlx->ea_texture, (int)mlx->tex_x, (int)mlx->tex_y);
-        if (mlx->x_offset == 3)
-            color = get_color(mlx->we_texture, (int)mlx->tex_x, (int)mlx->tex_y);
+        {
+            mlx->tex_y = distance_fromtop * (mlx->so_texture->height / wall_strip_height);
+            color = get_color(mlx->so_texture, mlx->tex_x, mlx->tex_y);
+        }
+        else if(mlx->x_offset == 1)
+        {
+            mlx->tex_y = distance_fromtop * (mlx->no_texture->height / wall_strip_height);
+            color = get_color(mlx->no_texture, mlx->tex_x, mlx->tex_y);
+        }
+        else if(mlx->x_offset == 2)
+        {
+            mlx->tex_y = distance_fromtop * (mlx->ea_texture->height / wall_strip_height);
+            color = get_color(mlx->ea_texture, mlx->tex_x, mlx->tex_y);
+        }
+        else if (mlx->x_offset == 3)
+        {
+            mlx->tex_y = distance_fromtop * (mlx->we_texture->height / wall_strip_height);
+            color = get_color(mlx->we_texture, mlx->tex_x, mlx->tex_y);
+        }
+        if (mlx->is_vertical == 0 && mlx->is_horizontal == 0)
+            my_mlx_pixel_put(&mlx->data, nb, j, 0);
         my_mlx_pixel_put(&mlx->data, nb, j, color);
         j++;
     }

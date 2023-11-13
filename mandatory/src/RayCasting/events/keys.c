@@ -67,9 +67,12 @@ void move_down_up(t_mlx *mlx)
 	float moveStep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
 	float newPlayerX = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle) * moveStep;
 	float newPlayerY = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle) * moveStep;
-	if (check_wall(mlx, newPlayerX, newPlayerY) == 0)
+	if (check_wall(mlx, newPlayerX + 1, newPlayerY) == 0)
 	{
 		mlx->cub3d.player.x = newPlayerX;
+	}
+	if (check_wall(mlx, newPlayerX, newPlayerY + 1) == 0)
+	{
 		mlx->cub3d.player.y = newPlayerY;
 	}
 }
@@ -78,10 +81,12 @@ void move_left_right(t_mlx *mlx)
 	float moveStep = mlx->cub3d.player.walk_speed * mlx->cub3d.player.turn_direction;
 	float newPlayerX = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
 	float newPlayerY = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle + M_PI_2) * moveStep;
-
-	if (check_wall(mlx, newPlayerX, newPlayerY) == 0)
+	if (check_wall(mlx, newPlayerX + 1, newPlayerY) == 0)
 	{
 		mlx->cub3d.player.x = newPlayerX;
+	}
+	if (check_wall(mlx, newPlayerX, newPlayerY + 1) == 0)
+	{
 		mlx->cub3d.player.y = newPlayerY;
 	}
 }
