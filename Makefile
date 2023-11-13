@@ -6,7 +6,7 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/13 22:29:50 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/13 23:20:38 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,11 @@ SRC = mandatory/cub3d.c $(wildcard mandatory/src/mlx/*.c) \
 # 		$(wildcard ./bonus/src/raycasting/textures_init/*.c) $(wildcard ./bonus/src/raycasting/minimap/*.c)
 
 OBJ = $(SRC:.c=.o)
-#OBJ_B = $(SRC_B:.c=.o)
-LIB_SRC = $(wildcard ./library/*.c ./library/**/*.c)
+OBJ_B = $(SRC_B:.c=.o)
+LIB_SRC = $(wildcard ./library/*.c)
 
 GREEN = \033[0;32m
+YELLOW = \033[0;33m
 ORANGE = \033[0;33m
 RED = \033[0;31mmake
 NC = \033[0m
@@ -49,16 +50,19 @@ $(LIB) : $(LIB_SRC)
 	@make -C ./library
 
 $(NAME): $(SRC) $(LIB)
-	$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME)
+	@echo "$(GREEN)Compiling cub3D...$(NC)"
+	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME)
 
 # bonus: $(NAME_BONUS)
 # 	$(CC) $(CFLAGS) $(PATH) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME_BONUS)
 
 clean:
+	@echo "$(ORANGE)Cleaning...$(NC)"
 	@rm -rf $(OBJ)
 	@make -C  ./library clean
 
 fclean:clean
+	@echo "$(RED)Fcleaning...$(NC)"
 	@rm -rf $(NAME)
 	@make -C  ./library fclean
 

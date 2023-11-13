@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/13 15:25:07 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:21:16 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int ready(t_mlx *mlx, char **av)
 	if (start_parsing(&mlx->cub3d) == EXIT_FAILURE
 		|| check_graphics(mlx->cub3d) == EXIT_FAILURE)
 	{
-		ft_putendl_fd("\033[0;31m 📛 Error Invalid Map 📛 \033[0m", 2);
+		ft_putendl_fd("\033[0;31m 📛 Error Invalid Map \033[0m", 2);
 		return (cleanup(&mlx->cub3d), 0);
 	}
 	return (1);
@@ -55,6 +55,8 @@ int main(int ac, char *av[])
 		close(mlx.cub3d.fd);
 		return (0);
 	}
+	else
+		printf("\033[0;31m Invalid arguments\033[0m\n\033[0;33m ./cub3d <map-path>\033[0m\n");
 	return (1);
 }
 

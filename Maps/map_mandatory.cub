@@ -2,10 +2,10 @@
 F 255,222,255
 C 225,30,050
 
-NO ./pics/mandatory/def/colorstone.xpm
-SO ./pics/mandatory/def/eagle.xpm
-EA ./pics/mandatory/def/redbrick.xpm
-WE ./pics/mandatory/def/purplestone.xpm
+NO ./Textures/wood0.xpm
+SO ./Textures/wood1.xpm
+EA ./Textures/wood2.xpm
+WE ./Textures/wood3.xpm
 
 
     11111111111111
