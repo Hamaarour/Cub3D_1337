@@ -5,30 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/18 16:41:44 by hamaarou          #+#    #+#              #
-#    Updated: 2023/08/18 17:13:30 by hamaarou         ###   ########.fr        #
+#    Created: 2023/11/13 21:27:07 by hamaarou          #+#    #+#              #
+#    Updated: 2023/11/13 22:23:22 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=GNL
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
-SRC=get_next_line.c \
-	get_next_line_utils.c
-OBJ=$(SRC:.c=.o)
+CC = cc
+FLAGS = -Wall -Wextra -Werror
+NAME = lib.a
 
-# $(NAME): $(OBJ)
-# 	@ $(CC) $(CFLAGS) -o $(NAME)   $(OBJ)
+SRC = $(wildcard ./*.c ./**/*.c)
 
-all: $(NAME)
+OBJ = $(SRC:.c=.o)
 
-$(NAME):$(OBJ)
-	ar rc $(NAME) $(OBJ)
-	
-clean:
-	@ rm -f $(OBJ)
+all : $(NAME)
 
-fclean: clean
-	@ rm -f $(NAME)
+$(NAME) : $(OBJ)
+	@ar -rc $(NAME) $(OBJ)
 
-re: fclean all
+%.o : %.c
+	@$(CC) $(FLAGS) -c $^ -o $@
+
+clean :
+	@rm -rf $(OBJ)
+
+fclean : clean
+	@rm -rf $(NAME)
+
+re : fclean all

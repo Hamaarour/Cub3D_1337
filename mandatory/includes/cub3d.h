@@ -16,12 +16,10 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
-# include "../Library/Libft/libft.h"
-# include "../Library/Get_next_line/get_next_line.h"
+# include "../../library/libft/libft.h"
+# include "../../library/get_next_line/get_next_line.h"
 
 # define TILE_SIZE 64
-# define MAP_NUM_ROWS 13
-# define MAP_NUM_COLS 20
 # define MAP_H 1080
 # define MAP_W 1920
 
