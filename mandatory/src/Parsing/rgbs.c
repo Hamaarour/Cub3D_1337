@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgbs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 11:07:18 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 02:12:50 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:00:10 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ int	save_rgbs(t_cub3d *cub3d, char *line)
 	else if (line[0] == 'C')
 		fill_rgbs(cub3d, rgb, 'C');
 	else
-		return (clean_map(rgb),free(tmp), EXIT_FAILURE);
+		return (clean_map(rgb), free(tmp), EXIT_FAILURE);
 	return (clean_map(rgb), free(tmp), EXIT_SUCCESS);
 }

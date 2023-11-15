@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*                                                                           */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:49:02 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 18:36:16 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:45:51 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
 
-// Directions
 # define NO 4.72
 # define SO 1.57
 # define WE 3.14
@@ -147,6 +146,16 @@ typedef struct s_minimap
 	int		y_pos;
 }				t_minimap;
 
+typedef struct s_wall
+{
+	float			ray_distance;
+	float			distance_pjplane;
+	float			wall_strip_height;
+	float			walltp;
+	float			wallbop;
+	int				distance_fromtop;
+}	t_wall;
+
 typedef struct s_mlx
 {
 	int			x_offset;
@@ -165,6 +174,7 @@ typedef struct s_mlx
 	t_image		*so_texture;
 	t_image		*we_texture;
 	t_image		*ea_texture;
+	t_wall		wall;
 	t_img_data	imgs;
 	t_data		data;
 	t_cub3d		cub3d;
@@ -174,12 +184,14 @@ typedef struct s_mlx
 //* FUNCTIONS PROTOTYPE
 void			initialize(t_cub3d *cub3d);
 int				check_file_extension(char *file_name);
+
 //+ Parsing cardinal Functions +//
 int				start_parsing(t_cub3d *cub3d);
 int				save_cardinal_directions(t_cub3d *cub3d, char *line);
 int				is_cardinal_direction(char *line);
 int				ft_matrice_len(char **matrice);
 int				save_textures(char **matrice, t_cub3d *cub3d);
+
 //+ Parsing RGB Functions +//
 int				save_rgbs(t_cub3d *cub3d, char *line);
 //+ Parsing Map Functions +//
@@ -190,22 +202,27 @@ void			rect_map(t_cub3d *cub3d);
 size_t			tall_line(char **map);
 char			*get_line(char *line, size_t max);
 int				check_newline(char *map_1d);
+
 //*player*//
 int				has_one_player(t_cub3d *cub3d);
 void			get_p_position(t_cub3d *cub3d);
+
 //+config file
 int				check_rgb(t_cub3d cube3d);
 int				check_texture(t_cub3d cube3d);
 int				check_graphics(t_cub3d cub3d);
+
 //+ Cleanup Functions +//
 void			clean_rgb(char *rgb, char *tmp);
 void			clean_map(char **matrice);
 void			cleanup(t_mlx *mlx);
+
 //+Ray Casting Functions +//
 void			player_init(t_cub3d *cub3d);
 int				key_press(int key, t_mlx *mlx);
 int				key_release(int key, t_mlx *mlx);
 int				mouse(int x, int y, t_mlx *ml);
+
 void			render(t_mlx *mlx);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				game(t_mlx *mlx);
@@ -228,5 +245,4 @@ void			getdirection(t_mlx *mlx);
 double			get_x(t_mlx *mlx);
 void			free_textures(t_mlx *mlx);
 int				rgb_to_int(int red, int green, int blue);
-
 #endif

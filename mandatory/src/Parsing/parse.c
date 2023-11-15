@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:51:52 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 02:40:12 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:55:26 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int	start_parsing(t_cub3d *cub3d)
 	{
 		line = get_next_line(cub3d->fd);
 		if (!line)
-		{
-			free(line);
 			break ;
-		}
 		if (line[0] == '\n')
 		{
 			free(line);

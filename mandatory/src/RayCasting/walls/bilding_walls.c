@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/15 21:52:18 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:55:29 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check_wall_2(t_mlx *mlx, float x, float y)
 {
+	if (x < 0 || y < 0 || x >= MAP_W || y >= MAP_H)
+		return (0);
 	if (mlx->cub3d.map_2d[(int)(y / TILE_SIZE)][(int)(x / TILE_SIZE)] == '1')
 		return (0);
 	if (mlx->cub3d.map_2d[(int)((y - 2) / TILE_SIZE)][(int)(x

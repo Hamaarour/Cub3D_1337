@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 21:40:51 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/16 00:06:21 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char *av[])
 	{
 		initialize(&mlx.cub3d);
 		if (ready(&mlx, av) == EXIT_SUCCESS)
-				gameloop(&mlx);
+			gameloop(&mlx);
 		cleanup(&mlx);
 		mlx_clear_window(mlx.mlx_ptr, mlx.mlx_win);
 		mlx_destroy_window(mlx.mlx_ptr, mlx.mlx_win);

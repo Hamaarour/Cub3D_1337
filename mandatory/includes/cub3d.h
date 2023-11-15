@@ -144,6 +144,10 @@ typedef struct s_minimap
 {
 	int		x_pos;
 	int		y_pos;
+	int		xp;
+	int		yp;
+	int		i;
+	int		j;
 }				t_minimap;
 
 typedef struct s_wall
@@ -154,7 +158,7 @@ typedef struct s_wall
 	float			walltp;
 	float			wallbop;
 	int				distance_fromtop;
-} t_wall;
+}	t_wall;
 
 typedef struct s_mlx
 {
