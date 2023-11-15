@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 17:27:03 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/27 16:12:31 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:43:34 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ static int	free_space(char **p)
 		free(p[i]);
 		i++;
 	}
-	free(p);
 	return (1);
 }
 
-static char	**aloc(char const *s, char sep)
+static	char	**aloc(char const *s, char sep)
 {
 	char	**k;
 
@@ -84,13 +83,8 @@ char	**ft_split(char const *s, char sep)
 		{
 			start = i;
 			i = ww(s, sep, i);
-			p[j] = ft_substr(s, start, (i - start));
-			if (!p[j])
-			{
-				free_space(p);
-				return (NULL);
-			}
-			j++;
+			p[j++] = ft_substr(s, start, (i - start));
+			(!p) && (free_space(p));
 		}
 		else
 			i++;

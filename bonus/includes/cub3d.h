@@ -1,12 +1,12 @@
 /* ************************************************************************** */
-/*                                                                           */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 11:49:02 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/22 17:45:51 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:36:16 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <mlx.h>
-# include "../Library/Libft/libft.h"
-# include "../Library/Get_next_line/get_next_line.h"
+# include "../../library/libft/libft.h"
+# include "../../library/get_next_line/get_next_line.h"
 
 # define TILE_SIZE 64
 # define MAP_NUM_ROWS 13
@@ -38,18 +38,17 @@
 // view
 # define VIEW_RIGHT 124
 # define VIEW_LEFT 123
-# define VIEW_RIGHT_MOUSE 264
-# define VIEW_LEFT_MOUSE 269
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-//# define NUM_RAYS (MAP_H / WALL_STRIP_WIDTH)
 
+// Directions
 # define NO 4.72
 # define SO 1.57
 # define WE 3.14
 # define EA 0
 
+//* STRUCTS
 typedef struct s_parse_direction
 {
 	char	*north_texture;
@@ -120,8 +119,6 @@ typedef struct s_cub3d
 	int					fd;
 	char				*map_1d;
 	char				**map_2d;
-	int					map_height;
-	int					map_width;
 	t_parse_direction	parse_direct;
 	t_rgb				floor;
 	t_rgb				ceiling;
@@ -174,64 +171,41 @@ typedef struct s_mlx
 	t_minimap	minimap;
 }	t_mlx;
 
-//! Parsing cardinal Functions +!//
-
-//* STRUCTS
-
 //* FUNCTIONS PROTOTYPE
 void			initialize(t_cub3d *cub3d);
-
+int				check_file_extension(char *file_name);
 //+ Parsing cardinal Functions +//
 int				start_parsing(t_cub3d *cub3d);
 int				save_cardinal_directions(t_cub3d *cub3d, char *line);
 int				is_cardinal_direction(char *line);
 int				ft_matrice_len(char **matrice);
 int				save_textures(char **matrice, t_cub3d *cub3d);
-
 //+ Parsing RGB Functions +//
-int				comma_check(char *line);
 int				save_rgbs(t_cub3d *cub3d, char *line);
-int				result_length(char *line);
-int				check_isdigit(char *line);
-int				rgb(t_cub3d cub3d);
-int				rgb_is_set(t_cub3d *cub3d);
-
 //+ Parsing Map Functions +//
-void			map_height(t_cub3d *cub3d);
-void			map_width(t_cub3d *cub3d);
-int				first_last_lines(char *line);
-int				first_last_column(char *line);
 int				is_surrounded(t_cub3d *cub3d);
-int				map_check(t_cub3d *cub3d);
+int				check_map(t_cub3d *cub3d);
 int				is_map(char *line);
-char			**to_rectangle(char **map, size_t line_length);
+void			rect_map(t_cub3d *cub3d);
 size_t			tall_line(char **map);
 char			*get_line(char *line, size_t max);
 int				check_newline(char *map_1d);
-void			map_dimension(t_cub3d *cub3d);
-
 //*player*//
-int				num_of_player(t_cub3d *cub3d);
+int				has_one_player(t_cub3d *cub3d);
 void			get_p_position(t_cub3d *cub3d);
-
 //+config file
 int				check_rgb(t_cub3d cube3d);
 int				check_texture(t_cub3d cube3d);
 int				check_graphics(t_cub3d cub3d);
-
 //+ Cleanup Functions +//
 void			clean_rgb(char *rgb, char *tmp);
 void			clean_map(char **matrice);
-void			cleanup(t_cub3d *cub3d);
+void			cleanup(t_mlx *mlx);
 //+Ray Casting Functions +//
-
-//+Ray Casting Functions +//
-
 void			player_init(t_cub3d *cub3d);
 int				key_press(int key, t_mlx *mlx);
 int				key_release(int key, t_mlx *mlx);
 int				mouse(int x, int y, t_mlx *ml);
-
 void			render(t_mlx *mlx);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int				game(t_mlx *mlx);
@@ -251,5 +225,8 @@ unsigned int	get_color(t_image *tex, int x, int y);
 void			my_mlx_pixel_put2(t_image *textures, int x, int y, int color);
 void			minimap_render(t_mlx *mlx);
 void			getdirection(t_mlx *mlx);
+double			get_x(t_mlx *mlx);
+void			free_textures(t_mlx *mlx);
+int				rgb_to_int(int red, int green, int blue);
 
 #endif

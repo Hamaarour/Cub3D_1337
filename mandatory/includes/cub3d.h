@@ -41,7 +41,6 @@
 
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define WALL_STRIP_WIDTH 1
-//# define NUM_RAYS (MAP_H / WALL_STRIP_WIDTH)
 
 # define NO 4.72
 # define SO 1.57
@@ -147,6 +146,16 @@ typedef struct s_minimap
 	int		y_pos;
 }				t_minimap;
 
+typedef struct s_wall
+{
+	float			ray_distance;
+	float			distance_pjplane;
+	float			wall_strip_height;
+	float			walltp;
+	float			wallbop;
+	int				distance_fromtop;
+} t_wall;
+
 typedef struct s_mlx
 {
 	int			x_offset;
@@ -165,6 +174,7 @@ typedef struct s_mlx
 	t_image		*so_texture;
 	t_image		*we_texture;
 	t_image		*ea_texture;
+	t_wall		wall;
 	t_img_data	imgs;
 	t_data		data;
 	t_cub3d		cub3d;

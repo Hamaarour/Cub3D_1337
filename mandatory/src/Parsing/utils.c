@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 17:38:16 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 17:38:23 by hamaarou         ###   ########.fr       */
+/*   Created: 2023/11/08 18:21:25 by bkaztaou          #+#    #+#             */
+/*   Updated: 2023/11/14 20:03:42 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../includes/cub3d.h"
 
