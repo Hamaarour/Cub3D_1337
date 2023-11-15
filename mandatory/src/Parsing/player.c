@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position.c                                         :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaztaou <bkaztaou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 09:38:46 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/07 02:43:27 by bkaztaou         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:37:56 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-float player_angel(char c)
+float	alpha(char c)
 {
 	if (c == 'N')
 		return (NO);
@@ -24,10 +24,10 @@ float player_angel(char c)
 		return (WE);
 }
 
-void get_p_position(t_cub3d *cub3d)
+void	get_p_position(t_cub3d *cub3d)
 {
-	int px;
-	int py;
+	int	px;
+	int	py;
 
 	px = (int)cub3d->player.x;
 	py = (int)cub3d->player.y;
@@ -37,12 +37,13 @@ void get_p_position(t_cub3d *cub3d)
 		px = 0;
 		while (cub3d->map_2d[py][px])
 		{
-			if (cub3d->map_2d[py][px] == 'S' || cub3d->map_2d[py][px] == 'N' || cub3d->map_2d[py][px] == 'E' || cub3d->map_2d[py][px] == 'W')
+			if (cub3d->map_2d[py][px] == 'S' || cub3d->map_2d[py][px] == 'N'
+				|| cub3d->map_2d[py][px] == 'E' || cub3d->map_2d[py][px] == 'W')
 			{
-				cub3d->player.rotation_angle = player_angel(cub3d->map_2d[py][px]);
+				cub3d->player.rotation_angle = alpha(cub3d->map_2d[py][px]);
 				cub3d->player.x = (float)(px * TILE_SIZE + 16);
 				cub3d->player.y = (float)(py * TILE_SIZE + 16);
-				return;
+				return ;
 			}
 			px++;
 		}

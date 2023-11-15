@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movese.c                                           :+:      :+:    :+:   */
+/*   help_keys.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:49:12 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/14 22:19:03 by mel-kabb         ###   ########.fr       */
+/*   Created: 2023/11/14 22:08:26 by mel-kabb          #+#    #+#             */
+/*   Updated: 2023/11/15 01:11:16 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
-void	look_left_right(t_mlx *mlx)
-{
-	mlx->cub3d.player.rotation_angle += mlx->cub3d.player.look
-		* mlx->cub3d.player.turn_speed;
-}
-
 void	move_down_up(t_mlx *mlx)
 {
 	float	movestep;
-	float	newplayerx;
+	float	newylayerx;
 	float	newplayery;
 
 	movestep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
-	newplayerx = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle)
+	newylayerx = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle)
 		* movestep;
 	newplayery = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle)
 		* movestep;
-	if (check_wall(mlx, newplayerx, newplayery) == 0)
+	if (check_wall(mlx, newylayerx, newplayery) == 0)
 	{
-		mlx->cub3d.player.x = newplayerx;
+		mlx->cub3d.player.x = newylayerx;
 		mlx->cub3d.player.y = newplayery;
 	}
 }

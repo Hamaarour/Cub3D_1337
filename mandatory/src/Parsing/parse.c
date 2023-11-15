@@ -6,66 +6,69 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:51:52 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/12 22:27:24 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:37:52 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int is_invalid_line(char *line)
+int	is_invalid_element(char *line)
 {
 	if (line[0] == '\n' && line[0] == '\0'
-		&& line[0] == '\t' && line[0] == ' ')
+		&& line[0] == '\t')
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-int handle_map(t_cub3d *cub3d, char *line)
+int	save_map_matrice(t_cub3d *cub3d, char *line)
 {
-	int	status;
+	char	*copy;
+	char	*tmp;
 
-	status = EXIT_SUCCESS;
-	if (check_graphics(*cub3d) == EXIT_SUCCESS
-		&& is_invalid_line(line) == EXIT_SUCCESS)
+	copy = ft_strdup(line);
+	if (is_invalid_element(line) == EXIT_SUCCESS)
 	{
-		while (line)
+		while (copy)
 		{
-			cub3d->map_1d = ft_strjoin(cub3d->map_1d, line);
-			free(line);
-			line = get_next_line(cub3d->fd);
+			tmp = ft_strjoin(cub3d->map_1d, copy);
+			cub3d->map_1d = tmp;
+			free(copy);
+			copy = get_next_line(cub3d->fd);
 		}
-		if (map_check(cub3d) || check_newline(cub3d->map_1d))
-			status = EXIT_FAILURE;
+		if (check_map(cub3d) || check_newline(cub3d->map_1d))
+			return (EXIT_FAILURE);
 	}
-	return status;
+	return (EXIT_SUCCESS);
 }
 
-int start_parsing(t_cub3d *cub3d)
+int	start_parsing(t_cub3d *cub3d)
 {
 	char	*line;
 	int		status;
 
-	cub3d->map_1d = NULL;
-	cub3d->map_2d = NULL;
-	status = EXIT_SUCCESS;
-	while ((line = get_next_line(cub3d->fd)))
+	status = EXIT_FAILURE;
+	while (1)
 	{
+		line = get_next_line(cub3d->fd);
+		if (!line)
+		{
+			free(line);
+			break ;
+		}
 		if (line[0] == '\n')
 		{
 			free(line);
-			continue;
+			continue ;
 		}
 		if (is_cardinal_direction(line))
 			status = save_cardinal_directions(cub3d, line);
 		else if (line[0] == 'F' || line[0] == 'C')
 			status = save_rgbs(cub3d, line);
-		else if (is_map(line))
-			status = handle_map(cub3d, line);
+		else if (is_map(line) && !check_graphics(*cub3d))
+			status = save_map_matrice(cub3d, line);
 		else
 			status = EXIT_FAILURE;
 		free(line);
-		if (status == EXIT_FAILURE)
-			break;
 	}
-	return status;
+	return (status);
 }

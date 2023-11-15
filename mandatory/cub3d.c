@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:30:58 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/13 23:21:16 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 04:22:21 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/cub3d.h"
 
-void gameloop(t_mlx *mlx)
+void	gameloop(t_mlx *mlx)
 {
 	mlx->mlx_ptr = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, MAP_W, MAP_H, "cub3d");
@@ -25,38 +25,42 @@ void gameloop(t_mlx *mlx)
 	mlx_hook(mlx->mlx_win, 17, 1L << 2, close_window, mlx);
 	mlx_loop_hook(mlx->mlx_ptr, game, mlx);
 	mlx_loop(mlx->mlx_ptr);
-	cleanup(&mlx->cub3d);
 }
 
-int ready(t_mlx *mlx, char **av)
+int	ready(t_mlx *mlx, char **av)
 {
 	mlx->cub3d.file_name = av[1];
 	mlx->cub3d.fd = open(mlx->cub3d.file_name, O_RDONLY);
-	if (mlx->cub3d.fd == -1)
-		return (0);
+	if (mlx->cub3d.fd == -1 || check_file_extension(mlx->cub3d.file_name))
+	{
+		ft_putendl_fd("\033[0;31m 📛 Error Invalid File 📛 \033[0m", 2);
+		return (EXIT_FAILURE);
+	}
 	if (start_parsing(&mlx->cub3d) == EXIT_FAILURE
 		|| check_graphics(mlx->cub3d) == EXIT_FAILURE)
 	{
-		ft_putendl_fd("\033[0;31m 📛 Error Invalid Map \033[0m", 2);
-		return (cleanup(&mlx->cub3d), 0);
+		ft_putendl_fd("\033[0;31m 📛 Error Invalid Map 📛 \033[0m", 2);
+		return (cleanup(mlx), EXIT_FAILURE);
 	}
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-	t_mlx mlx;
+	t_mlx	mlx;
 
 	if (ac == 2)
 	{
 		initialize(&mlx.cub3d);
-		if (ready(&mlx, av))
+		if (ready(&mlx, av) == EXIT_SUCCESS)
 			gameloop(&mlx);
+		cleanup(&mlx);
+		mlx_clear_window(mlx.mlx_ptr, mlx.mlx_win);
+		mlx_destroy_window(mlx.mlx_ptr, mlx.mlx_win);
 		close(mlx.cub3d.fd);
 		return (0);
 	}
 	else
-		printf("\033[0;31m Invalid arguments\033[0m\n\033[0;33m ./cub3d <map-path>\033[0m\n");
+		ft_putendl_fd("\033[0;31m 📛 Error Invalid Arguments 📛 \033[0m", 2);
 	return (1);
 }
-

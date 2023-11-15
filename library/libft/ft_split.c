@@ -47,7 +47,7 @@ static int	free_space(char **p)
 	return (1);
 }
 
-static	char	**aloc(char const *s, char sep)
+static char	**aloc(char const *s, char sep)
 {
 	char	**k;
 

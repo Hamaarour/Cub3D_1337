@@ -15,8 +15,8 @@
 #include <string.h>
 
 /*
-    s1 = "++hicham++"
-    s2 = "-+"
+	s1 = "++hicham++"
+	s2 = "-+"
 */
 
 static int	is_set(char c, char *set)

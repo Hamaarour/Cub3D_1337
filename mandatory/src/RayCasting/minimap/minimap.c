@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:34:09 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/12 21:31:51 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/14 22:19:43 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_square(t_mlx *mlx, int x, int y, int size, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = y;
 	while (i < y + size)
@@ -29,19 +29,20 @@ void	draw_square(t_mlx *mlx, int x, int y, int size, int color)
 		i++;
 	}
 }
+
 void	draw_player(t_mlx *mlx)
 {
 	int	x;
 	int	y;
 
 	x = 128;
-	y = x; //(8 * 17) - 8
+	y = x;
 	draw_square(mlx, x, y, 16, 0x5a9475);
 }
 
 void	get_new_rect(t_mlx *mlx, int i, int j, char pos)
 {
-	if(pos == '1')
+	if (pos == '1')
 		draw_square(mlx, i, j, 16, 0);
 	else
 		draw_square(mlx, i, j, 16, 0xbea289);
@@ -51,8 +52,8 @@ void	minimap_render(t_mlx *mlx)
 {
 	int	i;
 	int	j;
-	int xp;
-	int yp;
+	int	xp;
+	int	yp;
 
 	xp = mlx->cub3d.player.x / 64;
 	yp = mlx->cub3d.player.y / 64;
@@ -67,9 +68,10 @@ void	minimap_render(t_mlx *mlx)
 			if (mlx->minimap.x_pos >= 0 && mlx->minimap.y_pos >= 0
 				&& mlx->minimap.y_pos < mlx->cub3d.map.y
 				&& mlx->minimap.x_pos < mlx->cub3d.map.x)
-				get_new_rect(mlx,i, j, mlx->cub3d.map_2d[mlx->minimap.y_pos][mlx->minimap.x_pos]);
+				get_new_rect(mlx, i, j,
+					mlx->cub3d.map_2d[mlx->minimap.y_pos][mlx->minimap.x_pos]);
 			else
-				draw_square(mlx, i , j , 16, 0);
+				draw_square(mlx, i, j, 16, 0);
 			mlx->minimap.y_pos++;
 			j += 16;
 		}

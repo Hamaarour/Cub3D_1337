@@ -12,11 +12,11 @@
 
 #include "../../includes/cub3d.h"
 
-void my_mlx_pixel_put2(t_image *textures, int x, int y, int color)
+void	my_mlx_pixel_put2(t_image *textures, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
-	dst = textures->addr + (y * textures->size_line + x * (textures->bits_per_pixel / 8));
+	dst = textures->addr + (y * textures->size_line + x
+			* (textures->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-

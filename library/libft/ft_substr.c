@@ -3,36 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:17:17 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/27 16:09:37 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/15 04:05:05 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static char	*test(unsigned int res, unsigned int len)
+{
+	char	*p;
+
+	if (len > res)
+		p = malloc(res + 1);
+	else
+		p = malloc(len + 1);
+	return (p);
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*b;
-	size_t	i;
+	unsigned int	i;
+	unsigned int	j;
+	char			*p;
 
 	i = 0;
+	j = 0;
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	if (len > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	b = malloc((len + 1));
-	if (!b)
+	p = test(ft_strlen(s) - start, len);
+	if (!p)
 		return (NULL);
-	while (s[start] != '\0' && i < len && start < ft_strlen(s))
+	while (s[i])
 	{
-		b[i] = s[start];
-		start++;
+		if (i == start)
+		{
+			while (s[i] && j < len)
+				p[j++] = s[i++];
+			break ;
+		}
 		i++;
 	}
-	b[i] = 0;
-	return (b);
+	p[j] = '\0';
+	return (p);
 }

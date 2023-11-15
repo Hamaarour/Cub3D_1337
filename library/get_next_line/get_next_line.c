@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 16:30:16 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/23 21:57:47 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/14 22:22:46 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ss(int fd, char *buffer, char *tmp, char **string)
 {
-	int		bytes;
+	int	bytes;
 
 	bytes = 1;
 	while (ft_strchr_g(tmp) == 0 && bytes != 0)

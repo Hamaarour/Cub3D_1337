@@ -6,30 +6,26 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/13 23:20:38 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/15 17:39:00 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3D
 NAME_BONUS=cub3D_bonus
 CC=cc
-CFLAGS=-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS=-Wall -Wextra -Werror -g3 -fsanitize=address
 FRAMWORK=-lmlx -framework OpenGL -framework AppKit
 
 LIB = ./library/lib.a
 
 SRC = mandatory/cub3d.c $(wildcard mandatory/src/mlx/*.c) \
-		$(wildcard mandatory/src/parsing/*.c) $(wildcard mandatory/src/parsing/directions/*.c) \
-		$(wildcard mandatory/src/parsing/map/*.c) $(wildcard mandatory/src/parsing/player/*.c) \
-		$(wildcard mandatory/src/parsing/floor_ceiling/*.c) \
+		$(wildcard mandatory/src/parsing/*.c) \
 		$(wildcard mandatory/src/raycasting/events/*.c) $(wildcard mandatory/src/raycasting/utils/*.c) \
 		$(wildcard mandatory/src/raycasting/line/*.c) $(wildcard mandatory/src/raycasting/walls/*.c) \
 		$(wildcard mandatory/src/raycasting/textures_init/*.c) $(wildcard mandatory/src/raycasting/minimap/*.c)
 
 # SRC_B= cub3d_bonus.c $(wildcard ./bonus/src/mlx/*.c) \
-# 		$(wildcard ./bonus/src/parsing/*.c) $(wildcard ./bonus/src/parsing/directions/*.c) \
-# 		$(wildcard ./bonus/src/parsing/map/*.c) $(wildcard ./bonus/src/parsing/player/*.c) \
-# 		$(wildcard ./bonus/src/parsing/floor_ceiling/*.c) \
+# 		$(wildcard ./bonus/src/parsing/*.c)  \
 # 		$(wildcard ./bonus/src/raycasting/events/*.c) $(wildcard ./bonus/src/raycasting/utils/*.c) \
 # 		$(wildcard ./bonus/src/raycasting/line/*.c) $(wildcard ./bonus/src/raycasting/walls/*.c) \
 # 		$(wildcard ./bonus/src/raycasting/textures_init/*.c) $(wildcard ./bonus/src/raycasting/minimap/*.c)
@@ -50,7 +46,8 @@ $(LIB) : $(LIB_SRC)
 	@make -C ./library
 
 $(NAME): $(SRC) $(LIB)
-	@echo "$(GREEN)Compiling cub3D...$(NC)"
+	@echo "$(YELLOW)Compiling cub3D...$(NC)"
+	@echo "$(GREEN)Done $(NC)"
 	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME)
 
 # bonus: $(NAME_BONUS)
@@ -58,11 +55,13 @@ $(NAME): $(SRC) $(LIB)
 
 clean:
 	@echo "$(ORANGE)Cleaning...$(NC)"
+	@echo "$(GREEN)Done $(NC)"
 	@rm -rf $(OBJ)
 	@make -C  ./library clean
 
 fclean:clean
 	@echo "$(RED)Fcleaning...$(NC)"
+	@echo "$(GREEN)Done $(NC)"
 	@rm -rf $(NAME)
 	@make -C  ./library fclean
 
