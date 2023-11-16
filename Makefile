@@ -6,7 +6,7 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/16 19:05:37 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/16 20:04:39 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,13 @@ SRC = mandatory/cub3d.c $(wildcard mandatory/src/mlx/*.c) \
 		$(wildcard mandatory/src/parsing/*.c) \
 		$(wildcard mandatory/src/raycasting/events/*.c) $(wildcard mandatory/src/raycasting/utils/*.c) \
 		$(wildcard mandatory/src/raycasting/line/*.c) $(wildcard mandatory/src/raycasting/walls/*.c) \
-		$(wildcard mandatory/src/raycasting/textures_init/*.c) $(wildcard mandatory/src/raycasting/minimap/*.c)
+		$(wildcard mandatory/src/raycasting/textures_init/*.c)
 
-# SRC_B= cub3d_bonus.c $(wildcard ./bonus/src/mlx/*.c) \
-# 		$(wildcard ./bonus/src/parsing/*.c)  \
-# 		$(wildcard ./bonus/src/raycasting/events/*.c) $(wildcard ./bonus/src/raycasting/utils/*.c) \
-# 		$(wildcard ./bonus/src/raycasting/line/*.c) $(wildcard ./bonus/src/raycasting/walls/*.c) \
-# 		$(wildcard ./bonus/src/raycasting/textures_init/*.c) $(wildcard ./bonus/src/raycasting/minimap/*.c)
+SRC_B= bonus/cub3d.c $(wildcard bonus/src/mlx/*.c) \
+		$(wildcard bonus/src/parsing/*.c)  \
+		$(wildcard bonus/src/raycasting/events/*.c) $(wildcard bonus/src/raycasting/utils/*.c) \
+		$(wildcard bonus/src/raycasting/line/*.c) $(wildcard bonus/src/raycasting/walls/*.c) \
+		$(wildcard bonus/src/raycasting/textures_init/*.c) $(wildcard bonus/src/raycasting/minimap/*.c)
 
 OBJ = $(SRC:.c=.o)
 OBJ_B = $(SRC_B:.c=.o)
@@ -50,8 +50,10 @@ $(NAME): $(SRC) $(LIB)
 	@echo "$(GREEN)🎮 Game is Ready 🎮$(NC)"
 	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME)
 
-# bonus: $(NAME_BONUS)
-# 	$(CC) $(CFLAGS) $(PATH) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME_BONUS)
+bonus: $(NAME_BONUS) $(LIB)
+	@echo "$(YELLOW)Compiling cub3D Bonus...$(NC)"
+	@echo "$(GREEN)🎮 Game is Ready 🎮$(NC)"
+	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME_BONUS)
 
 clean:
 	@echo "$(ORANGE)Cleaning...$(NC)"

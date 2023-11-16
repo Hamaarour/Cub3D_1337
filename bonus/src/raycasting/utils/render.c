@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:26:03 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/16 19:54:21 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:50:18 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	render(t_mlx *mlx)
 	mlx->data.addr = mlx_get_data_addr(mlx->data.img, &mlx->data.bits_per_pixel,
 			&mlx->data.line_length, &mlx->data.endian);
 	ray(mlx);
+	if (MAP_H <= 256 || MAP_W <= 256)
+	{
+		ft_putendl_fd("Error\nMap is too small to be rendered", 2);
+		cleanup(mlx);
+		exit(EXIT_FAILURE);
+	}
+	minimap_render(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->mlx_win, mlx->data.img, 0, 0);
 	return ;
 }
