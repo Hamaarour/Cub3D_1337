@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:34:09 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 22:16:24 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:49:50 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	draw_player(t_mlx *mlx)
 
 void	get_new_rect(t_mlx *mlx, char pos)
 {
-	if (pos == '1')
+	if (pos == '1' || pos == '$')
 		draw_square(mlx, mlx->minimap.i, mlx->minimap.j, 0);
 	else
 		draw_square(mlx, mlx->minimap.i, mlx->minimap.j, 0xbea289);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:50:03 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/14 22:21:02 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:43:22 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,4 @@ int	close_window(t_mlx *mlx)
 	mlx_destroy_window(mlx->mlx_ptr, mlx->mlx_win);
 	printf("close window\n");
 	exit(0);
-}
-
-void	look_left_right(t_mlx *mlx)
-{
-	mlx->cub3d.player.rotation_angle += mlx->cub3d.player.look
-		* mlx->cub3d.player.turn_speed;
 }

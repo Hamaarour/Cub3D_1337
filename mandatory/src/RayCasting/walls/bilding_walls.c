@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/15 23:55:29 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:09:20 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	render3dwalls(t_mlx *mlx, int nb)
 	}
 	while (j < mlx->wall.wallbop)
 	{
+		// my_mlx_pixel_put(&mlx->data, 64, 64, 0x000000);
 		mlx->wall.distance_fromtop = j + (mlx->wall.wall_strip_height / 2) - (MAP_H / 2);
 		mlx->tex_y = mlx->wall.distance_fromtop * (mlx->no_texture->height
 				/ mlx->wall.wall_strip_height);

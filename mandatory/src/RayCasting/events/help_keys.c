@@ -3,31 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   help_keys.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:08:26 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/15 01:11:16 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:43:28 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/cub3d.h"
 
+void	look_left_right(t_mlx *mlx)
+{
+	mlx->cub3d.player.rotation_angle += mlx->cub3d.player.look
+		* mlx->cub3d.player.turn_speed;
+	render(mlx);
+}
+
 void	move_down_up(t_mlx *mlx)
 {
 	float	movestep;
-	float	newylayerx;
+	float	newplayerx;
 	float	newplayery;
 
 	movestep = mlx->cub3d.player.walk_direction * mlx->cub3d.player.walk_speed;
-	newylayerx = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle)
+	newplayerx = mlx->cub3d.player.x + cos(mlx->cub3d.player.rotation_angle)
 		* movestep;
 	newplayery = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle)
 		* movestep;
-	if (check_wall(mlx, newylayerx, newplayery) == 0)
-	{
-		mlx->cub3d.player.x = newylayerx;
-		mlx->cub3d.player.y = newplayery;
-	}
+	if (check_wall(mlx, newplayerx, mlx->cub3d.player.y) == 0)
+        mlx->cub3d.player.x = newplayerx;
+    if (check_wall(mlx, mlx->cub3d.player.x, newplayery) == 0)
+        mlx->cub3d.player.y = newplayery;
+	render(mlx);
 }
 
 void	move_left_right(t_mlx *mlx)
@@ -41,9 +48,9 @@ void	move_left_right(t_mlx *mlx)
 			+ M_PI_2) * movestep;
 	newplayery = mlx->cub3d.player.y + sin(mlx->cub3d.player.rotation_angle
 			+ M_PI_2) * movestep;
-	if (check_wall(mlx, newplayerx, newplayery) == 0)
-	{
-		mlx->cub3d.player.x = newplayerx;
-		mlx->cub3d.player.y = newplayery;
-	}
+	if (check_wall(mlx, newplayerx, mlx->cub3d.player.y) == 0)
+        mlx->cub3d.player.x = newplayerx;
+    if (check_wall(mlx, mlx->cub3d.player.x, newplayery) == 0)
+        mlx->cub3d.player.y = newplayery;
+	render(mlx);
 }
