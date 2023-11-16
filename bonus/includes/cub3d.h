@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include <unistd.h>
@@ -144,6 +145,10 @@ typedef struct s_minimap
 {
 	int		x_pos;
 	int		y_pos;
+	int		xp;
+	int		yp;
+	int		i;
+	int		j;
 }				t_minimap;
 
 typedef struct s_wall

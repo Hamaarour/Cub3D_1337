@@ -6,7 +6,7 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/16 20:10:53 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/16 22:17:11 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,16 +55,18 @@ bonus : $(BONUS)
 $(BONUS) : $(SRC_B) $(LIB)
 	@echo "$(YELLOW)Compiling cub3D Bonus...$(NC)"
 	@echo "$(GREEN)🎮 Game is Ready 🎮$(NC)"
-	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(SRC_B) $(LIB) $(FRAMWORK) -o $(BONUS)
 
 clean:
 	@echo "$(ORANGE)Cleaning...$(NC)"
 	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_B)
 	@make -C  ./library clean
 
 fclean:clean
 	@echo "$(RED)Fcleaning...$(NC)"
 	@rm -rf $(NAME)
+	@rm -rf $(BONUS)
 	@make -C  ./library fclean
 
 re: fclean all
