@@ -6,12 +6,12 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/16 20:04:39 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/16 20:10:53 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=cub3D
-NAME_BONUS=cub3D_bonus
+BONUS=cub3D_bonus
 CC=cc
 CFLAGS=-Wall -Wextra -Werror #-g3 -fsanitize=address
 FRAMWORK=-lmlx -framework OpenGL -framework AppKit
@@ -50,7 +50,9 @@ $(NAME): $(SRC) $(LIB)
 	@echo "$(GREEN)🎮 Game is Ready 🎮$(NC)"
 	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME)
 
-bonus: $(NAME_BONUS) $(LIB)
+bonus : $(BONUS)
+
+$(BONUS) : $(SRC_B) $(LIB)
 	@echo "$(YELLOW)Compiling cub3D Bonus...$(NC)"
 	@echo "$(GREEN)🎮 Game is Ready 🎮$(NC)"
 	@$(CC) $(CFLAGS) $(SRC) $(LIB) $(FRAMWORK) -o $(NAME_BONUS)
