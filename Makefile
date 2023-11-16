@@ -6,7 +6,7 @@
 #    By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/18 13:13:10 by hamaarou          #+#    #+#              #
-#    Updated: 2023/11/16 22:17:11 by hamaarou         ###   ########.fr        #
+#    Updated: 2023/11/16 23:31:48 by hamaarou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=cub3D
 BONUS=cub3D_bonus
 CC=cc
 CFLAGS=-Wall -Wextra -Werror #-g3 -fsanitize=address
-FRAMWORK=-lmlx -framework OpenGL -framework AppKit
+FRAMWORK=-lmlx -framework OpenGL -framework AppKit -Ofast
 
 LIB = ./library/lib.a
 
