@@ -41,10 +41,10 @@ Feel free to explore our codebase and join us on this exciting journey into the 
 ## Mathematical Concepts
 
 To understand the mathematical foundations of our approach, let's delve into the following key concepts:
-<div>
+<div align="center" >
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/1.jpeg" width='500px' height='300px'>
 </div>
-<div>
+<div align="center" >
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/2.jpeg" width='500px' height='300px'>
 </div>
 <div>
