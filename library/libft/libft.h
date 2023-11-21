@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 20:26:04 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/14 22:21:53 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:55:31 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 int		ft_isalpha(int alpha);
 int		ft_atoi(const char *str);

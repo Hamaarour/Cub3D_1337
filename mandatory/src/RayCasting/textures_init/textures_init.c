@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 21:32:44 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 04:22:39 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/20 16:45:26 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_texture_2(void *ptr)
 	if ((char *)ptr == NULL)
 	{
 		ft_putendl_fd("\033[0;31m 📛 Error Invalid Textures \033[0m", 2);
-		return (EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -49,4 +49,10 @@ void	textures_init(t_mlx *mlx)
 	mlx->so_texture = new_texture(mlx, mlx->cub3d.parse_direct.south_texture);
 	mlx->we_texture = new_texture(mlx, mlx->cub3d.parse_direct.west_texture);
 	mlx->ea_texture = new_texture(mlx, mlx->cub3d.parse_direct.east_texture);
+	if (mlx->no_texture == NULL || mlx->so_texture == NULL
+		|| mlx->we_texture == NULL || mlx->ea_texture == NULL)
+	{
+		cleanup(mlx);
+		exit(EXIT_FAILURE);
+	}
 }

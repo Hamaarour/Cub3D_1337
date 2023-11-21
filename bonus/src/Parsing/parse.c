@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:51:52 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 21:55:26 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:12:17 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ int	save_map_matrice(t_cub3d *cub3d, char *line)
 	return (EXIT_SUCCESS);
 }
 
+int	parse_elements(t_cub3d *cub3d, char *line)
+{
+	int	status;
+
+	status = EXIT_FAILURE;
+	if (!is_cardinal_direction(line))
+	{
+		status = save_cardinal_directions(cub3d, line);
+		if (status == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
+	else if (line[0] == 'F' || line[0] == 'C')
+	{
+		status = save_rgbs(cub3d, line);
+		if (status == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
+	else if (!is_map(line) && !check_graphics(*cub3d))
+		status = save_map_matrice(cub3d, line);
+	return (status);
+}
+
 int	start_parsing(t_cub3d *cub3d)
 {
 	char	*line;
@@ -57,12 +79,8 @@ int	start_parsing(t_cub3d *cub3d)
 			free(line);
 			continue ;
 		}
-		if (is_cardinal_direction(line))
-			status = save_cardinal_directions(cub3d, line);
-		else if (line[0] == 'F' || line[0] == 'C')
-			status = save_rgbs(cub3d, line);
-		else if (is_map(line) && !check_graphics(*cub3d))
-			status = save_map_matrice(cub3d, line);
+		if (parse_elements(cub3d, line) == EXIT_SUCCESS)
+			status = EXIT_SUCCESS;
 		else
 			status = EXIT_FAILURE;
 		free(line);

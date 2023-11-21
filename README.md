@@ -2,7 +2,7 @@
 <img src =""  width='900px' height='600px'>
 </p>
 <p align="center">
-<img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/Owners.png">
+<img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/cub.jpeg">
 </p>
 
 <p align="center">Welcome to cub3D, a graphic design project that serves as a playground to explore the practical applications of mathematics in the world of computer graphics.

@@ -6,7 +6,7 @@
 /*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 20:55:37 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/08/22 11:57:38 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:55:23 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 		res = res * 10 + str[i++] - '0';
-	if (res > 9223372036854775807 && n == 1)
+	if (res > INT_MAX && n == 1)
 		return (-1);
-	else if (res > 9223372036854775807 && n == -1)
+	else if (res > INT_MAX && n == -1)
 		return (0);
 	return (res * n);
 }

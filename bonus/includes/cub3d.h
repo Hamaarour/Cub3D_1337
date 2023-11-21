@@ -39,7 +39,7 @@
 # define VIEW_RIGHT 124
 # define VIEW_LEFT 123
 
-# define FOV_ANGLE (60 * (M_PI / 180))
+# define FA 60
 # define WALL_STRIP_WIDTH 1
 
 # define NO 4.72
@@ -195,9 +195,10 @@ int				save_cardinal_directions(t_cub3d *cub3d, char *line);
 int				is_cardinal_direction(char *line);
 int				ft_matrice_len(char **matrice);
 int				save_textures(char **matrice, t_cub3d *cub3d);
-
+int				is_map_last_element(t_cub3d cub);
 //+ Parsing RGB Functions +//
 int				save_rgbs(t_cub3d *cub3d, char *line);
+int				is_rgb_fill(int r, int g, int b);
 //+ Parsing Map Functions +//
 int				is_surrounded(t_cub3d *cub3d);
 int				check_map(t_cub3d *cub3d);
@@ -249,4 +250,5 @@ void			getdirection(t_mlx *mlx);
 double			get_x(t_mlx *mlx);
 void			free_textures(t_mlx *mlx);
 int				rgb_to_int(int red, int green, int blue);
+int				check_exit(void);
 #endif

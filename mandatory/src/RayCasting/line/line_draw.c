@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 18:38:47 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/14 22:20:11 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:38:36 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ray(t_mlx *mlx)
 	double	ray_increment;
 	int		i;
 
-	ray_angle = mlx->cub3d.player.rotation_angle - (FOV_ANGLE / 2);
+	ray_angle = mlx->cub3d.player.rotation_angle - ((FA * (M_PI / 180)) / 2);
 	mlx->rayangle = ray_angle;
-	ray_increment = FOV_ANGLE / MAP_W;
+	ray_increment = (FA * (M_PI / 180)) / MAP_W;
 	i = 0;
 	while (i < MAP_W)
 	{

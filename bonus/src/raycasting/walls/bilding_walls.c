@@ -6,7 +6,7 @@
 /*   By: mel-kabb <mel-kabb@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 16:25:52 by mel-kabb          #+#    #+#             */
-/*   Updated: 2023/11/15 23:45:45 by mel-kabb         ###   ########.fr       */
+/*   Updated: 2023/11/17 00:38:36 by mel-kabb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	help_wall(t_mlx *mlx)
 {
 	mlx->wall.ray_distance = mlx->distance * cos(mlx->rayangle
 			- mlx->cub3d.player.rotation_angle);
-	mlx->wall.distance_pjplane = (MAP_W / 2) / tan(FOV_ANGLE / 2);
+	mlx->wall.distance_pjplane = (MAP_W / 2) / tan((FA * (M_PI / 180)) / 2);
 	mlx->wall.wall_strip_height = (TILE_SIZE / mlx->wall.ray_distance)
 		* mlx->wall.distance_pjplane;
 	mlx->wall.walltp = (MAP_H / 2) - (mlx->wall.wall_strip_height / 2);

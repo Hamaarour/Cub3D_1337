@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rect_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hamaarou <hamaarou@1337.student.ma>        +#+  +:+       +#+        */
+/*   By: hamaarou <hamaarou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 14:45:38 by hamaarou          #+#    #+#             */
-/*   Updated: 2023/11/15 04:13:29 by hamaarou         ###   ########.fr       */
+/*   Updated: 2023/11/19 12:33:52 by hamaarou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	is_map(char *line)
 	i = -1;
 	while (line[++i])
 		if ((line[i] == '1' || line[i] == '0'))
-			return (1);
-	return (0);
+			return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
 }
 
 size_t	tall_line(char **map)
