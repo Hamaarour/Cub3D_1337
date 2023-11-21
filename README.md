@@ -1,5 +1,5 @@
 <p align="center" >
-<img src =""  width='900px' height='600px'>
+<img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/cub.jpeg"  width='900px' height='600px'>
 </p>
 <p align="center">
 <img src ="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/cub.jpeg">
