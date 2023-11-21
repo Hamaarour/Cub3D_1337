@@ -41,36 +41,36 @@ Feel free to explore our codebase and join us on this exciting journey into the 
 ## Mathematical Concepts
 
 To understand the mathematical foundations of our approach, let's delve into the following key concepts:
-<p>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/1.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/2.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/3.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/4.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/5.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/6.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/7.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/8.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/9.jpeg" width='500px' height='300px'>
-</p>
-<p>
+</div>
+<div>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/11.jpeg">
-</p>
+</div>
 
 
 
