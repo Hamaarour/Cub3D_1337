@@ -42,31 +42,31 @@ Feel free to explore our codebase and join us on this exciting journey into the 
 
 To understand the mathematical foundations of our approach, let's delve into the following key concepts:
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/1.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/1.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/2.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/2.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/3.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/3.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/4.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/4.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/5.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/5.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/6.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/6.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/7.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/7.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/8.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/8.jpeg" width='200px' height='300px'>
 </p>
 <p>
-<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/9.jpeg">
+<img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/9.jpeg" width='200px' height='300px'>
 </p>
 <p>
 <img src="https://github.com/Hamaarour/Cub3D_1337/blob/parsing/assets/pictures/11.jpeg">
